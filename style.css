@@ -489,6 +489,8 @@ h6 {
 
 .hero-person-img {
     max-height: 500px;
+    width: 100%;
+    object-fit: contain;
     filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.15));
     mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
