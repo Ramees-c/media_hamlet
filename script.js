@@ -109,16 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Cursor Glow Logic
-    const cursorGlow = document.getElementById('cursor-glow');
-    if (cursorGlow) {
-        document.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            cursorGlow.style.left = `${clientX}px`;
-            cursorGlow.style.top = `${clientY}px`;
-        });
-    }
-
     // Subtle Card Tilt Effect
     const tiltCards = document.querySelectorAll('.service-card, .workflow-step-card');
     tiltCards.forEach(card => {

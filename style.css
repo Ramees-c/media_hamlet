@@ -137,20 +137,6 @@ h6 {
     transform: translate(-50%, -50%);
 }
 
-/* Cursor Glow Effect */
-.cursor-glow {
-    position: fixed;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(251, 82, 61, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease-out;
-    filter: blur(40px);
-}
-
 /* Navigation */
 .custom-navbar {
     background: transparent;
