@@ -41,7 +41,6 @@
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
 }
 
 body {
@@ -339,8 +338,8 @@ h6 {
 }
 
 .shape-1 {
-    width: clamp(12px, 2vw, 20px);
-    height: clamp(12px, 2vw, 20px);
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     top: 15%;
     left: 10%;
@@ -348,8 +347,8 @@ h6 {
 }
 
 .shape-2 {
-    width: clamp(10px, 1.5vw, 15px);
-    height: clamp(10px, 1.5vw, 15px);
+    width: 15px;
+    height: 15px;
     border-radius: 3px;
     top: 65%;
     left: 8%;
@@ -357,8 +356,8 @@ h6 {
 }
 
 .shape-3 {
-    width: clamp(18px, 3vw, 30px);
-    height: clamp(18px, 3vw, 30px);
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     top: 25%;
     right: 12%;
@@ -366,8 +365,8 @@ h6 {
 }
 
 .shape-4 {
-    width: clamp(15px, 2.5vw, 25px);
-    height: clamp(15px, 2.5vw, 25px);
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     bottom: 20%;
     right: 20%;
@@ -375,8 +374,8 @@ h6 {
 }
 
 .shape-5 {
-    width: clamp(8px, 1.2vw, 12px);
-    height: clamp(8px, 1.2vw, 12px);
+    width: 12px;
+    height: 12px;
     border-radius: 2px;
     top: 45%;
     left: 40%;
@@ -384,8 +383,8 @@ h6 {
 }
 
 .shape-6 {
-    width: clamp(12px, 1.8vw, 18px);
-    height: clamp(12px, 1.8vw, 18px);
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     top: 80%;
     left: 35%;
@@ -393,8 +392,8 @@ h6 {
 }
 
 .shape-7 {
-    width: clamp(14px, 2.2vw, 22px);
-    height: clamp(14px, 2.2vw, 22px);
+    width: 22px;
+    height: 22px;
     border-radius: 4px;
     top: 40%;
     right: 40%;
@@ -402,8 +401,8 @@ h6 {
 }
 
 .shape-8 {
-    width: clamp(10px, 1.5vw, 15px);
-    height: clamp(10px, 1.5vw, 15px);
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     bottom: 10%;
     left: 60%;
@@ -1678,6 +1677,8 @@ h6 {
         width: 100%;
         justify-content: center;
     }
+}
+
 }
 
 @media (max-width: 767.98px) {
