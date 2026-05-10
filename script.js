@@ -18,28 +18,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // Navbar scroll effect (Hide on scroll down, show on scroll up)
     const navbar = document.querySelector('.custom-navbar');
     let lastScrollY = window.scrollY;
+    let ticking = false;
 
     window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const currentScrollY = window.scrollY;
 
-        // Add 'scrolled' class for background effect
-        if (currentScrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+                // Add 'scrolled' class for background effect
+                if (currentScrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                // Hide/Show logic
+                if (currentScrollY > lastScrollY && currentScrollY > 150) {
+                    navbar.classList.add('navbar-hidden');
+                } else {
+                    navbar.classList.remove('navbar-hidden');
+                }
+
+                lastScrollY = currentScrollY;
+                ticking = false;
+            });
+            ticking = true;
         }
-
-        // Hide/Show logic
-        if (currentScrollY > lastScrollY && currentScrollY > 150) {
-            // Scrolling down & not at the top - hide navbar
-            navbar.classList.add('navbar-hidden');
-        } else {
-            // Scrolling up or at the top - show navbar
-            navbar.classList.remove('navbar-hidden');
-        }
-
-        lastScrollY = currentScrollY;
-    });
+    }, { passive: true });
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -109,28 +114,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Subtle Card Tilt Effect
-    const tiltCards = document.querySelectorAll('.service-card, .workflow-step-card');
-    tiltCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+    // Subtle Card Tilt Effect - Performance: Only enable for devices with a mouse
+    if (window.matchMedia('(pointer: fine)').matches) {
+        const tiltCards = document.querySelectorAll('.service-card, .workflow-step-card');
+        tiltCards.forEach(card => {
+            let isMoving = false;
+            card.addEventListener('mousemove', (e) => {
+                if (isMoving) return;
+                isMoving = true;
+                window.requestAnimationFrame(() => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
 
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
 
-            const rotateX = (y - centerY) / 20;
-            const rotateY = (centerX - x) / 20;
+                    const rotateX = (y - centerY) / 20;
+                    const rotateY = (centerX - x) / 20;
 
-            card.style.transition = 'transform 0.1s ease-out';
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+                    card.style.transition = 'transform 0.1s ease-out';
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+                    isMoving = false;
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transition = 'transform 0.5s ease';
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+            });
         });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transition = 'transform 0.5s ease';
-            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
-        });
-    });
+    }
 
 });

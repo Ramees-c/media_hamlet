@@ -102,6 +102,15 @@ h6 {
     mix-blend-mode: overlay;
 }
 
+/* Performance Optimization: Disable heavy filters on mobile */
+@media (max-width: 991.98px) {
+    .noise-overlay,
+    .ambient-glow,
+    .global-bg-elements {
+        display: none !important;
+    }
+}
+
 /* Ambient Glows */
 .ambient-glow {
     position: fixed;
@@ -144,6 +153,7 @@ h6 {
     border-bottom: 1px solid transparent;
     padding-top: 20px;
     padding-bottom: 20px;
+    will-change: transform, background, backdrop-filter;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
     will-change: transform;
 }
@@ -390,15 +400,15 @@ h6 {
 
 @keyframes float-slow {
     0% {
-        transform: translate(0, 0) rotate(0deg);
+        transform: translate3d(0, 0, 0) rotate(0deg);
     }
 
     50% {
-        transform: translate(30px, -30px) rotate(180deg);
+        transform: translate3d(30px, -30px, 0) rotate(180deg);
     }
 
     100% {
-        transform: translate(0, 0) rotate(360deg);
+        transform: translate3d(0, 0, 0) rotate(360deg);
     }
 }
 
@@ -1147,17 +1157,17 @@ h6 {
 
 @keyframes scroll-left {
     to {
-        transform: translateX(calc(-50% - 0.75rem));
+        transform: translate3d(calc(-50% - 0.75rem), 0, 0);
     }
 }
 
 @keyframes scroll-right {
     from {
-        transform: translateX(calc(-50% - 0.75rem));
+        transform: translate3d(calc(-50% - 0.75rem), 0, 0);
     }
 
     to {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
@@ -1360,11 +1370,11 @@ h6 {
 
 @keyframes testimonial-slide {
     0% {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 
     100% {
-        transform: translateX(calc(-50% - 0.75rem));
+        transform: translate3d(calc(-50% - 0.75rem), 0, 0);
     }
 }
 
@@ -1392,11 +1402,11 @@ h6 {
 
 @keyframes ticker-slide {
     0% {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 
     100% {
-        transform: translateX(-50%);
+        transform: translate3d(-50%, 0, 0);
     }
 }
 
