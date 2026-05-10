@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Media Hamlet - Oman's leading social media power house. We specialize in crafting unique social media presence for brands.">
+    <title>Media Hamlet - Oman's Social Media Power House</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div id="loader-wrapper">
+        <div class="loader-bg-elements">
+            <div class="bg-shape shape-1"></div>
+            <div class="bg-shape shape-2"></div>
+            <div class="bg-shape shape-3"></div>
+            <div class="bg-shape shape-4"></div>
+        </div>
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img src="asstes/brand_logo.png" alt="Media Hamlet">
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Background Glows -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="ambient-glow glow-3"></div>
+    <div class="noise-overlay"></div>
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Global Decorative Elements -->
+    <div class="global-bg-elements">
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        <div class="bg-shape shape-3"></div>
+        <div class="bg-shape shape-4"></div>
+        <div class="bg-shape shape-5"></div>
+        <div class="bg-shape shape-6"></div>
+        <div class="bg-shape shape-7"></div>
+        <div class="bg-shape shape-8"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="asstes/brand_logo.png" alt="Media Hamlet Logo" class="brand-logo" id="main-logo">
+            </a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+                <i class="bi bi-list text-dark fs-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                <div class="nav-action d-flex align-items-center gap-3">
+                    <div class="social-icons d-none d-lg-flex gap-2">
+                        <a href="#" class="social-icon-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon-link"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="social-icon-link"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section d-flex align-items-center position-relative overflow-hidden">
+        <div class="container">
+            <div class="row align-items-center min-vh-100 pt-5">
+                <div class="col-lg-6 position-relative z-1" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="badge-custom mb-4 d-inline-block">
+                        Fast-Growing Agency of 2025
+                    </div>
+                    <h1 class="display-3 fw-bold mb-4 hero-title" data-aos="fade-up" data-aos-delay="100">
+                        Oman's Social<br><span class="text-gradient">Media</span> Power House.
+                    </h1>
+                    <p class="lead text-secondary mb-5 pe-lg-5 hero-text" data-aos="fade-up" data-aos-delay="200">
+                        Media Hamlet specialize in crafting unique social media presence that help businesses grow and
+                        stand out in their industries.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3" data-aos="fade-up" data-aos-delay="300">
+                        <a href="#contact"
+                            class="btn btn-primary rounded-3 px-4 py-3 fw-medium btn-hover-effect d-inline-flex align-items-center gap-2">
+                            Connect With Us
+                        </a>
+                        <a href="#portfolio"
+                            class="btn btn-outline rounded-3 px-4 py-3 fw-medium d-inline-flex align-items-center gap-2">
+                            Our Work
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 position-relative mt-5 mt-lg-0" data-aos="fade-left" data-aos-duration="1200"
+                    data-aos-delay="200">
+                    <div class="hero-graphic-container ms-lg-5">
+                        <div class="hero-image-wrapper position-relative text-center">
+                            <div class="social-floating-icon icon-ig"><i class="bi bi-instagram"></i></div>
+                            <div class="social-floating-icon icon-fb"><i class="bi bi-facebook"></i></div>
+                            <div class="social-floating-icon icon-ln"><i class="bi bi-linkedin"></i></div>
+                            <div class="social-floating-icon icon-tk"><i class="bi bi-tiktok"></i></div>
+                            <div class="social-floating-icon icon-sc"><i class="bi bi-snapchat"></i></div>
+                            <div class="social-floating-icon icon-wa"><i class="bi bi-whatsapp"></i></div>
+                            <div class="social-floating-icon icon-yt"><i class="bi bi-youtube"></i></div>
+                            <div class="social-floating-icon icon-tw"><i class="bi bi-twitter-x"></i></div>
+                            <img src="asstes/hero_img.png" alt="Social Media Expert"
+                                class="img-fluid hero-person-img position-relative z-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding position-relative overflow-hidden">
+        <!-- Decorative background text -->
+        <div class="position-absolute top-50 start-0 translate-middle-y opacity-25 d-none d-xl-block"
+            style="left: -2% !important; z-index: 0;">
+            <h2 class="display-1 fw-bold text-uppercase mb-0"
+                style="color: rgba(251, 82, 61, 0.04); letter-spacing: 1rem; transform: rotate(-90deg); white-space: nowrap;">
+                ABOUT MEDIA HAMLET</h2>
+        </div>
+
+        <div class="container">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-6 position-relative" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="about-image-wrapper">
+                        <div class="main-image-frame p-3 rounded-5 position-relative overflow-hidden shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=600&q=80"
+                                alt="Creative Agency" class="img-fluid rounded-5 object-fit-cover w-100"
+                                style="min-height: 500px;">
+                            <div class="image-inner-glow"></div>
+                        </div>
+
+                        <!-- Floating Stat Card -->
+                        <div class="floating-stat-card shadow-lg" data-aos="fade-up" data-aos-delay="600">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="stat-icon bg-primary text-white">
+                                    <i class="bi bi-graph-up-arrow"></i>
+                                </div>
+                                <div>
+                                    <h4 class="mb-0 fw-bold">47%</h4>
+                                    <p class="small text-muted mb-0">Growth Rate</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="experience-badge-modern" data-aos="zoom-in" data-aos-delay="400">
+                            <div class="badge-content">
+                                <span class="number text-gradient">10+</span>
+                                <span class="label text-muted">Years of<br>Excellence</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 ps-lg-5" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="badge-custom d-inline-flex align-items-center gap-2 mb-4">
+                        <div class="dot-indicator"></div>
+                        Expert Social Media Agency
+                    </div>
+                    <h2 class="display-5 fw-bold mb-4">
+                        Elevate Your Brand With <br>
+                        <span class="text-gradient">Strategic Social Media.</span>
+                    </h2>
+                    <p class="text-secondary mb-5 fs-5">
+                        We don't just post content; we build communities. Media Hamlet combines data-driven strategy
+                        with high-end creativity to help your business dominate the digital landscape.
+                    </p>
+
+                    <div class="row g-4 mb-5">
+                        <div class="col-sm-6">
+                            <div class="about-feature-box p-4 rounded-4 border">
+                                <i class="bi bi-shield-check text-primary fs-3 mb-3 d-block"></i>
+                                <h6 class="fw-bold">Trusted Partner</h6>
+                                <p class="small text-muted mb-0">Partnered with 10+ of Oman's industry giants.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="about-feature-box p-4 rounded-4 border">
+                                <i class="bi bi-lightning-charge text-primary fs-3 mb-3 d-block"></i>
+                                <h6 class="fw-bold">Proven ROI</h6>
+                                <p class="small text-muted mb-0">Delivering measurable growth in every campaign.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-4">
+                            <a href="#contact"
+                                class="btn btn-primary rounded-3 px-4 py-3 fw-medium btn-hover-effect">Work With Us</a>
+                            <div class="rating-block">
+                                <div class="text-warning mb-0 fs-6">
+                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                        class="bi bi-star-fill"></i>
+                                </div>
+                                <span class="text-secondary small fw-medium">50+ Client Reviews</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5 pb-4" data-aos="fade-up">
+                <div class="badge-custom d-inline-flex align-items-center gap-2 mb-4">
+                    <div class="dot-indicator"></div>
+                    What We Excel At
+                </div>
+                <h2 class="display-5 fw-bold mb-4">
+                    Full-Spectrum<br>
+                    <span class="text-gradient">Digital Dominance.</span>
+                </h2>
+                <p class="text-secondary mx-auto" style="max-width: 600px;">
+                    A comprehensive suite of social media services tailored to put your brand at the forefront of the
+                    Omani market.
+                </p>
+            </div>
+
+            <div class="row gy-4 services-section-row">
+                <div class="col-lg-6 services-left-col">
+                    <div class="image-card rounded-5 overflow-hidden position-relative services-sticky-image"
+                        data-aos="zoom-in" data-aos-duration="1200">
+                        <img src="https://images.unsplash.com/photo-1595020738512-66672a9d72a9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWVkaWElMjBjb21wYW55fGVufDB8fDB8fHww"
+                            alt="Team working" class="w-100 object-fit-cover" style="min-height: 500px;">
+                        <div class="image-overlay-bottom"></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="services-cards-wrapper">
+                        <div class="service-card p-4 p-md-5 rounded-5 mb-4 d-flex flex-column position-relative overflow-hidden"
+                            data-aos="fade-up" data-aos-delay="100">
+                            <span class="service-number">01</span>
+                            <div class="card-glow position-absolute top-0 end-0 rounded-circle"
+                                style="width: 250px; height: 250px; background: radial-gradient(circle, rgba(251,82,61,0.08) 0%, rgba(255,255,255,0) 70%); transform: translate(30%, -30%);">
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-start mb-4 position-relative z-1">
+                                <div class="icon-box rounded-4 d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-suit-spade text-primary fs-4"></i>
+                                </div>
+                            </div>
+
+                            <h3 class="fs-4 fw-bold mb-3 position-relative z-1">Full-Scale Management</h3>
+                            <p class="text-muted mb-4 position-relative z-1">
+                                Strategic planning, scheduling, and active community engagement to keep your brand at
+                                the center of the conversation.
+                            </p>
+
+                            <ul class="list-unstyled space-y-2 mb-4 position-relative z-1">
+                                <li class="d-flex align-items-center gap-3 mb-2 feature-item">
+                                    <i class="bi bi-check2 text-primary"></i>
+                                    <span class="text-dark small fw-medium">Strategic Content Calendar</span>
+                                </li>
+                                <li class="d-flex align-items-center gap-3 feature-item">
+                                    <i class="bi bi-check2 text-primary"></i>
+                                    <span class="text-dark small fw-medium">Active Community Management</span>
+                                </li>
+                            </ul>
+                            <div class="mt-auto position-relative z-1">
+                                <a href="#contact" class="btn btn-outline btn-sm rounded-3 px-4">
+                                    Learn More
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="service-card p-4 p-md-5 rounded-5 mb-4 d-flex flex-column position-relative overflow-hidden"
+                            data-aos="fade-up" data-aos-delay="200">
+                            <span class="service-number">02</span>
+                            <div class="card-glow position-absolute top-0 end-0 rounded-circle"
+                                style="width: 250px; height: 250px; background: radial-gradient(circle, rgba(251,82,61,0.08) 0%, rgba(255,255,255,0) 70%); transform: translate(30%, -30%);">
+                            </div>
+                            <div class="d-flex justify-content-between align-items-start mb-4 position-relative z-1">
+                                <div class="icon-box rounded-4 d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-lightbulb text-primary fs-4"></i>
+                                </div>
+                            </div>
+                            <h3 class="fs-4 fw-bold mb-3 position-relative z-1">Creative Production</h3>
+                            <p class="text-muted mb-4 position-relative z-1">
+                                Professional photography, high-impact video reels, and bespoke graphic design that
+                                captures attention.
+                            </p>
+                            <ul class="list-unstyled space-y-2 mb-4 position-relative z-1">
+                                <li class="d-flex align-items-center gap-3 mb-2 feature-item">
+                                    <i class="bi bi-check2 text-primary"></i>
+                                    <span class="text-dark small fw-medium">Cinematic Video & Reels</span>
+                                </li>
+                                <li class="d-flex align-items-center gap-3 feature-item">
+                                    <i class="bi bi-check2 text-primary"></i>
+                                    <span class="text-dark small fw-medium">High-End Graphic Design</span>
+                                </li>
+                            </ul>
+                            <div class="mt-auto position-relative z-1">
+                                <a href="#contact" class="btn btn-outline btn-sm rounded-3 px-4">
+                                    Learn More
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="service-card p-4 p-md-5 rounded-5 mb-4 d-flex flex-column position-relative overflow-hidden"
+                            data-aos="fade-up" data-aos-delay="300">
+                            <span class="service-number">03</span>
+                            <div class="card-glow position-absolute top-0 end-0 rounded-circle"
+                                style="width: 250px; height: 250px; background: radial-gradient(circle, rgba(251,82,61,0.08) 0%, rgba(255,255,255,0) 70%); transform: translate(30%, -30%);">
+                            </div>
+                            <div class="d-flex justify-content-between align-items-start mb-4 position-relative z-1">
+                                <div class="icon-box rounded-4 d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-megaphone text-primary fs-4"></i>
+                                </div>
+                            </div>
+                            <h3 class="fs-4 fw-bold mb-3 position-relative z-1">Performance Ads</h3>
+                            <p class="text-muted mb-4 position-relative z-1">
+                                Targeted advertising campaigns across Meta, TikTok, and Snapchat designed for conversion
+                                and scale.
+                            </p>
+                            <ul class="list-unstyled space-y-2 mb-4 position-relative z-1">
+                                <li class="d-flex align-items-center gap-3 mb-2 feature-item">
+                                    <i class="bi bi-check2 text-primary"></i>
+                                    <span class="text-dark small fw-medium">Precision Targeting</span>
+                                </li>
+                                <li class="d-flex align-items-center gap-3 feature-item">
+                                    <i class="bi bi-check2 text-primary"></i>
+                                    <span class="text-dark small fw-medium">ROI Optimization</span>
+                                </li>
+                            </ul>
+                            <div class="mt-auto position-relative z-1">
+                                <a href="#contact" class="btn btn-outline btn-sm rounded-3 px-4">
+                                    Learn More
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="service-card p-4 p-md-5 rounded-5 d-flex flex-column position-relative overflow-hidden"
+                            data-aos="fade-up" data-aos-delay="400">
+                            <span class="service-number">04</span>
+                            <div class="card-glow position-absolute top-0 end-0 rounded-circle"
+                                style="width: 250px; height: 250px; background: radial-gradient(circle, rgba(251,82,61,0.08) 0%, rgba(255,255,255,0) 70%); transform: translate(30%, -30%);">
+                            </div>
+                            <div class="d-flex justify-content-between align-items-start mb-4 position-relative z-1">
+                                <div class="icon-box rounded-4 d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-bar-chart-line text-primary fs-4"></i>
+                                </div>
+                            </div>
+                            <h3 class="fs-4 fw-bold mb-3 position-relative z-1">Advanced Analytics</h3>
+                            <p class="text-muted mb-4 position-relative z-1">
+                                Turning data into actionable insights with comprehensive monthly reporting and
+                                performance audits.
+                            </p>
+                            <ul class="list-unstyled space-y-2 mb-4 position-relative z-1">
+                                <li class="d-flex align-items-center gap-3 mb-2 feature-item">
+                                    <i class="bi bi-check2 text-primary"></i>
+                                    <span class="text-dark small fw-medium">Monthly Performance Audits</span>
+                                </li>
+                                <li class="d-flex align-items-center gap-3 feature-item">
+                                    <i class="bi bi-check2 text-primary"></i>
+                                    <span class="text-dark small fw-medium">Growth Data Analysis</span>
+                                </li>
+                            </ul>
+                            <div class="mt-auto position-relative z-1">
+                                <a href="#contact" class="btn btn-outline btn-sm rounded-3 px-4">
+                                    Learn More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section id="workflow" class="section-padding">
+        <div class="container">
+            <div class="row gy-4 mb-5 pb-4 align-items-end" data-aos="fade-up">
+                <div class="col-lg-6">
+                    <div class="badge-custom d-inline-flex align-items-center gap-2 mb-3">
+                        <div class="dot-indicator"></div>
+                        Our Workflow
+                    </div>
+                    <h2 class="display-5 fw-bold">
+                        From Concept To <br>
+                        <span class="text-gradient">Digital Success.</span>
+                    </h2>
+                </div>
+                <div class="col-lg-6 pb-2">
+                    <p class="text-secondary mb-0">
+                        We craft strategies, content, and campaigns that connect your brand with the right audience.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row gy-4 workflow-section-row">
+                <div class="col-lg-6 workflow-left-col">
+                    <!-- Stage 1 -->
+                    <div class="workflow-step-card p-4 p-md-5 rounded-5 mb-4 d-flex flex-column position-relative overflow-hidden"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-glow position-absolute top-0 start-0 rounded-circle"
+                            style="width: 250px; height: 250px; background: radial-gradient(circle, rgba(251,82,61,0.08) 0%, rgba(255,255,255,0) 70%); transform: translate(-30%, -30%);">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-4 position-relative z-1">
+                            <div class="icon-box rounded-4 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-rocket-takeoff text-primary fs-4"></i>
+                            </div>
+                            <span class="step-badge">Step 01</span>
+                        </div>
+                        <h3 class="fs-4 fw-bold mb-3 position-relative z-1">Brand Audit & Strategy</h3>
+                        <p class="text-muted mb-4 position-relative z-1">
+                            We analyze your current presence and define a data-backed roadmap to reach your target
+                            audience in Oman.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2 position-relative z-1">
+                            <span class="badge-pill-small">Market Research</span>
+                            <span class="badge-pill-small">KPI Setting</span>
+                        </div>
+                    </div>
+
+                    <!-- Stage 2 -->
+                    <div class="workflow-step-card p-4 p-md-5 rounded-5 mb-4 d-flex flex-column position-relative overflow-hidden"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-glow position-absolute top-0 start-0 rounded-circle"
+                            style="width: 250px; height: 250px; background: radial-gradient(circle, rgba(251,82,61,0.08) 0%, rgba(255,255,255,0) 70%); transform: translate(-30%, -30%);">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-4 position-relative z-1">
+                            <div class="icon-box rounded-4 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-palette text-primary fs-4"></i>
+                            </div>
+                            <span class="step-badge">Step 02</span>
+                        </div>
+                        <h3 class="fs-4 fw-bold mb-3 position-relative z-1">Creative Production</h3>
+                        <p class="text-muted mb-4 position-relative z-1">
+                            Our team creates high-end visuals and localized copy that resonates with your community and
+                            drives engagement.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2 position-relative z-1">
+                            <span class="badge-pill-small">Visual Design</span>
+                            <span class="badge-pill-small">Video Editing</span>
+                        </div>
+                    </div>
+
+                    <!-- Stage 3 -->
+                    <div class="workflow-step-card p-4 p-md-5 rounded-5 mb-4 d-flex flex-column position-relative overflow-hidden"
+                        data-aos="fade-up" data-aos-delay="300">
+                        <div class="card-glow position-absolute top-0 start-0 rounded-circle"
+                            style="width: 250px; height: 250px; background: radial-gradient(circle, rgba(251,82,61,0.08) 0%, rgba(255,255,255,0) 70%); transform: translate(-30%, -30%);">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-4 position-relative z-1">
+                            <div class="icon-box rounded-4 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-megaphone text-primary fs-4"></i>
+                            </div>
+                            <span class="step-badge">Step 03</span>
+                        </div>
+                        <h3 class="fs-4 fw-bold mb-3 position-relative z-1">Campaign Launch</h3>
+                        <p class="text-muted mb-4 position-relative z-1">
+                            We deploy the strategy across social channels, managing schedules and responding to your
+                            community in real-time.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2 position-relative z-1">
+                            <span class="badge-pill-small">Ad Deployment</span>
+                            <span class="badge-pill-small">Community Mgmt</span>
+                        </div>
+                    </div>
+
+                    <!-- Stage 4 -->
+                    <div class="workflow-step-card p-4 p-md-5 rounded-5 d-flex flex-column position-relative overflow-hidden"
+                        data-aos="fade-up" data-aos-delay="400">
+                        <div class="card-glow position-absolute top-0 start-0 rounded-circle"
+                            style="width: 250px; height: 250px; background: radial-gradient(circle, rgba(251,82,61,0.08) 0%, rgba(255,255,255,0) 70%); transform: translate(-30%, -30%);">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-4 position-relative z-1">
+                            <div class="icon-box rounded-4 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-graph-up-arrow text-primary fs-4"></i>
+                            </div>
+                            <span class="step-badge">Step 04</span>
+                        </div>
+                        <h3 class="fs-4 fw-bold mb-3 position-relative z-1">Review & Optimize</h3>
+                        <p class="text-muted mb-4 position-relative z-1">
+                            We analyze performance data to refine our tactics, ensuring consistent growth and an
+                            ever-improving ROI.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2 position-relative z-1">
+                            <span class="badge-pill-small">Growth Audits</span>
+                            <span class="badge-pill-small">Scaling Plan</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 workflow-right-col">
+                    <div class="workflow-sticky-image rounded-5 overflow-hidden position-relative" data-aos="fade-left">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80"
+                            alt="Team collaborating" class="w-100 h-100 object-fit-cover">
+                        <div class="image-overlay-bottom"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section-padding">
+        <div class="container text-center mb-5 pb-2" data-aos="fade-up">
+            <div class="badge-custom d-inline-flex align-items-center gap-2 mb-3">
+                <div class="dot-indicator"></div>
+                Grow With Media Hamlet
+            </div>
+            <h2 class="display-5 fw-bold mb-2">
+                The Trusted Social Media Partner<br>
+                <span class="text-gradient">Driving Impactful Results.</span>
+            </h2>
+            <p class="text-secondary">
+                Helping you connect with your audience and grow with confidence.
+            </p>
+        </div>
+
+        <div class="container-fluid px-0">
+            <div class="portfolio-infinite-container overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                <!-- Side Fades -->
+                <div class="track-fade-left"></div>
+                <div class="track-fade-right"></div>
+
+                <!-- Row 1: Slide Left -->
+                <div class="portfolio-track track-left mb-4">
+                    <!-- Set 1 -->
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card">
+                            <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=80"
+                                alt="Badr Al Samaa">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">Hospitality</span>
+                                    <h4>Badr Al Samaa</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card">
+                            <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80"
+                                alt="Woodlands">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">Fine Dining</span>
+                                    <h4>Woodlands</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card">
+                            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=600&q=80"
+                                alt="MRA Group">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">Bakery & Cafe</span>
+                                    <h4>MRA Group</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card">
+                            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80"
+                                alt="Urban Vibe">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">Lifestyle</span>
+                                    <h4>Urban Vibe</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Duplicate for loop -->
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card"><img
+                                src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=80"
+                                alt="">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">Hospitality</span>
+                                    <h4>Badr Al Samaa</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card"><img
+                                src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80"
+                                alt="">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">Fine Dining</span>
+                                    <h4>Woodlands</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card"><img
+                                src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=600&q=80"
+                                alt="">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">Bakery & Cafe</span>
+                                    <h4>MRA Group</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card"><img
+                                src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80"
+                                alt="">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">Lifestyle</span>
+                                    <h4>Urban Vibe</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Slide Right -->
+                <div class="portfolio-track track-right">
+                    <!-- Set 2 -->
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card">
+                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=600&q=80"
+                                alt="Marketing">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">Marketing</span>
+                                    <h4>Social Spark</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+                                alt="Analytics">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">Analytics</span>
+                                    <h4>Data Flow</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card">
+                            <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=600&q=80"
+                                alt="E-commerce">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">E-commerce</span>
+                                    <h4>Retail Plus</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card">
+                            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=600&q=80"
+                                alt="Fashion">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">Fashion</span>
+                                    <h4>Pure Luxury</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Duplicate for loop -->
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card"><img
+                                src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=600&q=80"
+                                alt="">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">Marketing</span>
+                                    <h4>Social Spark</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card"><img
+                                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+                                alt="">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">Analytics</span>
+                                    <h4>Data Flow</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card"><img
+                                src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=600&q=80"
+                                alt="">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">E-commerce</span>
+                                    <h4>Retail Plus</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item-wrapper">
+                        <div class="portfolio-card"><img
+                                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=600&q=80"
+                                alt="">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-details"><span class="category">Fashion</span>
+                                    <h4>Pure Luxury</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-outline rounded-3 px-4 py-2 fw-medium">View All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-padding bg-light bg-opacity-50">
+        <div class="container">
+            <div class="text-center mb-5 pb-4" data-aos="fade-up">
+                <div class="badge-custom d-inline-flex align-items-center gap-2 mb-3">
+                    <div class="dot-indicator"></div>
+                    Brands We Work With
+                </div>
+                <h2 class="display-5 fw-bold mb-3">
+                    Trusted By Leading Brands
+                </h2>
+                <p class="text-secondary mx-auto mb-0" style="max-width: 600px;">
+                    We're proud to partner with businesses across F&B, lifestyle, retail, and luxury — helping them grow
+                    their presence and connect with audiences.
+                </p>
+
+                <!-- Brand Logos Ticker -->
+                <div class="logos-ticker-container mt-5" data-aos="fade-up" data-aos-delay="200">
+                    <div class="logos-ticker">
+                        <img src="https://placehold.co/120x40/f8f9fa/1a1a1a?text=Logo+1" alt="Brand"
+                            class="brand-logo-filter" height="30">
+                        <img src="https://placehold.co/120x40/f8f9fa/1a1a1a?text=Logo+2" alt="Brand"
+                            class="brand-logo-filter" height="40">
+                        <img src="https://placehold.co/120x40/f8f9fa/1a1a1a?text=Logo+3" alt="Brand"
+                            class="brand-logo-filter" height="35">
+                        <img src="https://placehold.co/120x40/f8f9fa/1a1a1a?text=Logo+4" alt="Brand"
+                            class="brand-logo-filter" height="30">
+                        <img src="https://placehold.co/120x40/f8f9fa/1a1a1a?text=Logo+5" alt="Brand"
+                            class="brand-logo-filter" height="35">
+                        <!-- Duplicated set for seamless infinite loop -->
+                        <img src="https://placehold.co/120x40/f8f9fa/1a1a1a?text=Logo+1" alt="Brand"
+                            class="brand-logo-filter" height="30">
+                        <img src="https://placehold.co/120x40/f8f9fa/1a1a1a?text=Logo+2" alt="Brand"
+                            class="brand-logo-filter" height="40">
+                        <img src="https://placehold.co/120x40/f8f9fa/1a1a1a?text=Logo+3" alt="Brand"
+                            class="brand-logo-filter" height="35">
+                        <img src="https://placehold.co/120x40/f8f9fa/1a1a1a?text=Logo+4" alt="Brand"
+                            class="brand-logo-filter" height="30">
+                        <img src="https://placehold.co/120x40/f8f9fa/1a1a1a?text=Logo+5" alt="Brand"
+                            class="brand-logo-filter" height="35">
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-slider-wrapper" data-aos="fade-up">
+                <div class="testimonial-slider-track">
+                    <!-- Slide 1 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card p-4 p-lg-5 h-100 position-relative">
+                            <i
+                                class="bi bi-chat-square-quote position-absolute top-0 end-0 m-4 fs-3 text-primary opacity-25"></i>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80"
+                                    alt="Avatar" class="testimonial-avatar">
+                            </div>
+                            <div class="text-warning mb-3 small opacity-75">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i>
+                            </div>
+                            <p class="text-secondary mb-4 fs-6 lh-lg">
+                                "Media Hamlet has played a pivotal role in enhancing our digital presence. Their
+                                professionalism, strategic approach, and commitment to excellence have significantly
+                                contributed to strengthening our brand and engagement across platforms."
+                            </p>
+                            <div class="mt-auto pt-3 border-top border-dark border-opacity-10">
+                                <h6 class="fw-bold mb-1 text-primary">Firasath Hassan <span
+                                        class="text-muted fw-normal ms-1">• Executive Director</span></h6>
+                                <span class="text-muted small">Badr Al Samaa Group of Hospitals</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card p-4 p-lg-5 h-100 position-relative">
+                            <i
+                                class="bi bi-chat-square-quote position-absolute top-0 end-0 m-4 fs-3 text-primary opacity-25"></i>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
+                                    alt="Avatar" class="testimonial-avatar">
+                            </div>
+                            <div class="text-warning mb-3 small opacity-75">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i>
+                            </div>
+                            <p class="text-secondary mb-4 fs-6 lh-lg">
+                                "Our collaboration with Media Hamlet has significantly enhanced our brand's reach and
+                                resonance. Their strategic guidance and creative execution have allowed us to connect
+                                with more customers and significantly drive engagement."
+                            </p>
+                            <div class="mt-auto pt-3 border-top border-dark border-opacity-10">
+                                <h6 class="fw-bold mb-1 text-primary">Nisanth <span class="text-muted fw-normal ms-1">•
+                                        General Manager</span></h6>
+                                <span class="text-muted small">Woodlands Restaurant (Ajit Khimji Group)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card p-4 p-lg-5 h-100 position-relative">
+                            <i
+                                class="bi bi-chat-square-quote position-absolute top-0 end-0 m-4 fs-3 text-primary opacity-25"></i>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80"
+                                    alt="Avatar" class="testimonial-avatar">
+                            </div>
+                            <div class="text-warning mb-3 small opacity-75">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i>
+                            </div>
+                            <p class="text-secondary mb-4 fs-6 lh-lg">
+                                "Media Hamlet has been instrumental in helping MRA launch and establish a strong
+                                presence in Oman. Their creativity and strategic execution have played a key role in the
+                                brand's success and growth here in Oman."
+                            </p>
+                            <div class="mt-auto pt-3 border-top border-dark border-opacity-10">
+                                <h6 class="fw-bold mb-1 text-primary">Nizar Mannil <span
+                                        class="text-muted fw-normal ms-1">• Managing Director</span></h6>
+                                <span class="text-muted small">MRA Group of Bakery & Restaurants</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Duplicate Slides for Infinite Loop -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card p-4 p-lg-5 h-100 position-relative">
+                            <i
+                                class="bi bi-chat-square-quote position-absolute top-0 end-0 m-4 fs-3 text-primary opacity-25"></i>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80"
+                                    alt="Avatar" class="testimonial-avatar">
+                            </div>
+                            <div class="text-warning mb-3 small opacity-75">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i>
+                            </div>
+                            <p class="text-secondary mb-4 fs-6 lh-lg">
+                                "Media Hamlet has played a pivotal role in enhancing our digital presence. Their
+                                professionalism, strategic approach, and commitment to excellence have significantly
+                                contributed to strengthening our brand and engagement across platforms."
+                            </p>
+                            <div class="mt-auto pt-3 border-top border-dark border-opacity-10">
+                                <h6 class="fw-bold mb-1 text-primary">Firasath Hassan <span
+                                        class="text-muted fw-normal ms-1">• Executive Director</span></h6>
+                                <span class="text-muted small">Badr Al Samaa Group of Hospitals</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card p-4 p-lg-5 h-100 position-relative">
+                            <i
+                                class="bi bi-chat-square-quote position-absolute top-0 end-0 m-4 fs-3 text-primary opacity-25"></i>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80"
+                                    alt="Avatar" class="testimonial-avatar">
+                            </div>
+                            <div class="text-warning mb-3 small opacity-75">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i>
+                            </div>
+                            <p class="text-secondary mb-4 fs-6 lh-lg">
+                                "Our collaboration with Media Hamlet has significantly enhanced our brand's reach and
+                                resonance. Their strategic guidance and creative execution have allowed us to connect
+                                with more customers and significantly drive engagement."
+                            </p>
+                            <div class="mt-auto pt-3 border-top border-dark border-opacity-10">
+                                <h6 class="fw-bold mb-1 text-primary">Nisanth <span class="text-muted fw-normal ms-1">•
+                                        General Manager</span></h6>
+                                <span class="text-muted small">Woodlands Restaurant (Ajit Khimji Group)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card p-4 p-lg-5 h-100 position-relative">
+                            <i
+                                class="bi bi-chat-square-quote position-absolute top-0 end-0 m-4 fs-3 text-primary opacity-25"></i>
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80"
+                                    alt="Avatar" class="testimonial-avatar">
+                            </div>
+                            <div class="text-warning mb-3 small opacity-75">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                    class="bi bi-star-fill"></i>
+                            </div>
+                            <p class="text-secondary mb-4 fs-6 lh-lg">
+                                "Media Hamlet has been instrumental in helping MRA launch and establish a strong
+                                presence in Oman. Their creativity and strategic execution have played a key role in the
+                                brand's success and growth here in Oman."
+                            </p>
+                            <div class="mt-auto pt-3 border-top border-dark border-opacity-10">
+                                <h6 class="fw-bold mb-1 text-primary">Nizar Mannil <span
+                                        class="text-muted fw-normal ms-1">• Managing Director</span></h6>
+                                <span class="text-muted small">MRA Group of Bakery & Restaurants</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="cta-banner rounded-5 position-relative overflow-hidden text-center px-4 py-5 p-md-5"
+                data-aos="zoom-in" data-aos-duration="1000">
+                <div class="cta-shape shape-lg"></div>
+                <div class="cta-shape shape-sm"></div>
+                <div class="position-absolute top-0 start-50 translate-middle-x w-100 h-100 z-0 cta-glow"></div>
+                <div class="position-relative z-1 py-md-4 py-lg-5">
+                    <div
+                        class="badge-custom d-inline-flex align-items-center gap-2 mb-4 bg-white bg-opacity-10 border-white border-opacity-25">
+                        <div class="dot-indicator bg-white"></div>
+                        <span class="text-white">Join Us Now</span>
+                    </div>
+                    <h2 class="display-4 fw-bold text-white mb-4">
+                        Each Project we Undertake<br class="d-none d-md-block">
+                        <span class="text-white">is a Unique Opportunity.</span>
+                    </h2>
+                    <p class="text-white mx-auto mb-5" style="max-width: 500px;">
+                        Ready to take the next step? Join us now and start transforming your vision into reality with
+                        expert support.
+                    </p>
+                    <a href="#contact"
+                        class="btn btn-light rounded-3 px-4 py-3 fw-medium btn-hover-effect text-primary">
+                        Book an Appointment
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding pt-0">
+        <div class="container">
+            <div class="text-center mb-5 pb-4" data-aos="fade-up">
+                <div class="badge-custom d-inline-flex align-items-center gap-2 mb-3">
+                    <span class="badge bg-primary rounded-pill small px-2">24/7</span>
+                    Let's Work Together
+                </div>
+                <h2 class="display-4 fw-bold mb-3">
+                    Any Questions Rising?<br>
+                    <span class="text-primary">We are All Here.</span>
+                </h2>
+                <p class="text-secondary mx-auto mb-4" style="max-width: 500px;">
+                    Whether you have a question, need assistance, or want to start a new project, our team is here to
+                    help.
+                </p>
+            </div>
+
+            <div class="row gy-4">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <div class="contact-card p-4 p-lg-5 rounded-4 h-100">
+                        <form>
+                            <div class="row g-4">
+                                <div class="col-md-6 form-floating">
+                                    <input type="text" class="form-control custom-input" id="firstName" placeholder="Abdul">
+                                    <label for="firstName" class="ms-2">First Name*</label>
+                                </div>
+                                <div class="col-md-6 form-floating">
+                                    <input type="text" class="form-control custom-input" id="lastName" placeholder="Ahad">
+                                    <label for="lastName" class="ms-2">Last Name*</label>
+                                </div>
+                                <div class="col-12 form-floating">
+                                    <input type="tel" class="form-control custom-input" id="phone" placeholder="+968 98765432">
+                                    <label for="phone" class="ms-2">Contact Number</label>
+                                </div>
+                                <div class="col-12 form-floating">
+                                    <select class="form-select custom-input" id="companyType">
+                                        <option value="" selected disabled>Select Category</option>
+                                        <option value="Restaurant / Cafe">Restaurant / Cafe</option>
+                                        <option value="Medical Centre">Medical Centre</option>
+                                        <option value="Banking">Banking</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <label for="companyType" class="ms-2">Company Type*</label>
+                                </div>
+                                <div class="col-12 form-floating">
+                                    <textarea class="form-control custom-input" id="message" style="height: 120px" placeholder="Type your message..."></textarea>
+                                    <label for="message" class="ms-2">Message*</label>
+                                </div>
+                                <div class="col-12 pt-2">
+                                    <button type="submit" class="btn btn-primary w-100 rounded-4 py-3 fw-bold text-uppercase tracking-widest btn-hover-effect">
+                                        Send Message
+                                        <i class="bi bi-send-fill ms-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-flex flex-column gap-4" data-aos="fade-left">
+                    <div class="contact-card p-4 rounded-4 flex-grow-1 d-flex align-items-center gap-4">
+                        <div class="icon-box rounded-circle flex-shrink-0" style="width: 60px; height: 60px;">
+                            <i class="bi bi-envelope-at fs-4"></i>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <h6 class="mb-0 fw-bold">Email Us</h6>
+                                <span class="badge bg-primary rounded-pill" style="font-size: 0.6rem;">24/7</span>
+                            </div>
+                            <a href="#" class="text-secondary text-decoration-none stretched-link">info@mediahamlet.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-card p-4 rounded-4 flex-grow-1 d-flex align-items-center gap-4">
+                        <div class="icon-box rounded-circle flex-shrink-0" style="width: 60px; height: 60px;">
+                            <i class="bi bi-whatsapp fs-4"></i>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <h6 class="mb-0 fw-bold">Call / WhatsApp</h6>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <a href="#" class="text-secondary text-decoration-none">+123 4587 8910</a>
+                                <a href="#" class="text-secondary text-decoration-none">+123 4587 8910</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-card p-4 rounded-4 flex-grow-1 d-flex align-items-center gap-4">
+                        <div class="icon-box rounded-circle flex-shrink-0" style="width: 60px; height: 60px;">
+                            <i class="bi bi-geo-alt fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1 fw-bold">Visit Us</h6>
+                            <p class="text-secondary mb-0 small lh-sm">
+                                Musandam Building, Ruwi<br>
+                                Muscat, Sultanate of Oman
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="custom-footer py-5 mt-5">
+        <div class="container">
+            <div class="row gy-5">
+                <div class="col-lg-5 col-md-12" data-aos="fade-up">
+                    <img src="asstes/brand_logo.png" alt="Media Hamlet Logo" class="brand-logo mb-4">
+                    <p class="text-secondary mb-4 pe-lg-5">
+                        Oman's premier social media powerhouse. We craft unique digital experiences that connect brands with their audience through strategy and creativity.
+                    </p>
+                    <div class="social-icons d-flex gap-2">
+                        <a href="#" class="social-icon-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon-link"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="social-icon-link"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <h5 class="fw-bold mb-4">Navigation</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="#home" class="footer-link">Home</a></li>
+                        <li><a href="#about" class="footer-link">About Us</a></li>
+                        <li><a href="#portfolio" class="footer-link">Portfolio</a></li>
+                        <li><a href="#contact" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <h5 class="fw-bold mb-4">Contact</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3">
+                        <li class="d-flex align-items-start gap-3">
+                            <i class="bi bi-geo-alt-fill text-primary"></i>
+                            <span class="text-secondary small">Musandam Building, Ruwi, Muscat, Oman</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-3">
+                            <i class="bi bi-envelope-fill text-primary"></i>
+                            <a href="mailto:info@mediahamlet.com" class="footer-link small">info@mediahamlet.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-5 pt-4 border-top border-dark border-opacity-10 align-items-center">
+                <div class="col-12 text-center">
+                    <p class="text-secondary small mb-0">&copy; 2026 Media Hamlet. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Portfolio Lightbox Overlay -->
+    <div id="portfolioLightbox" class="lightbox-overlay">
+        <div class="lightbox-content">
+            <span class="lightbox-close"><i class="bi bi-x-lg"></i></span>
+            <img class="lightbox-image" src="" alt="Portfolio Large View">
+            <div class="lightbox-caption">
+                <span class="lightbox-category">Category</span>
+                <h3 class="lightbox-title">Project Name</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>
