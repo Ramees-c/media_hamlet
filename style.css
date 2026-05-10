@@ -344,7 +344,6 @@ h6 {
     border-radius: 50%;
     top: 15%;
     left: 10%;
-    animation: float-slow 15s infinite linear;
 }
 
 .shape-2 {
@@ -353,7 +352,6 @@ h6 {
     border-radius: 3px;
     top: 65%;
     left: 8%;
-    animation: float-slow 20s infinite linear reverse;
 }
 
 .shape-3 {
@@ -362,7 +360,6 @@ h6 {
     border-radius: 50%;
     top: 25%;
     right: 12%;
-    animation: float-slow 18s infinite linear;
 }
 
 .shape-4 {
@@ -371,7 +368,6 @@ h6 {
     border-radius: 50%;
     bottom: 20%;
     right: 20%;
-    animation: float-slow 25s infinite linear reverse;
 }
 
 .shape-5 {
@@ -380,7 +376,6 @@ h6 {
     border-radius: 2px;
     top: 45%;
     left: 40%;
-    animation: float-slow 12s infinite linear;
 }
 
 .shape-6 {
@@ -389,7 +384,6 @@ h6 {
     border-radius: 50%;
     top: 80%;
     left: 35%;
-    animation: float-slow 22s infinite linear;
 }
 
 .shape-7 {
@@ -398,7 +392,6 @@ h6 {
     border-radius: 4px;
     top: 40%;
     right: 40%;
-    animation: float-slow 18s infinite linear reverse;
 }
 
 .shape-8 {
@@ -407,7 +400,6 @@ h6 {
     border-radius: 50%;
     bottom: 10%;
     left: 60%;
-    animation: float-slow 20s infinite linear;
 }
 
 @keyframes float-slow {
@@ -884,6 +876,7 @@ h6 {
     height: calc(100vh - 180px);
     min-height: 400px;
     overflow: hidden;
+    position: -webkit-sticky;
     position: sticky;
     top: 120px;
     z-index: 10;
@@ -1043,6 +1036,7 @@ h6 {
     height: calc(100vh - 180px);
     min-height: 400px;
     overflow: hidden;
+    position: -webkit-sticky;
     position: sticky;
     top: 120px;
     z-index: 10;
@@ -1686,8 +1680,6 @@ h6 {
         width: 100%;
         justify-content: center;
     }
-}
-
 }
 
 @media (max-width: 767.98px) {
