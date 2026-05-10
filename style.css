@@ -929,14 +929,14 @@ h6 {
 /* Responsive adjustments for services section */
 @media (max-width: 991.98px) {
     .services-left-col {
-        position: static;
+        position: relative;
         top: auto;
     }
 
     .services-sticky-image {
         height: auto;
         min-height: 300px;
-        position: static;
+        position: relative;
         top: auto;
     }
 
@@ -1082,8 +1082,13 @@ h6 {
         justify-content: center !important;
     }
 
+    .workflow-section-row {
+        display: block;
+        /* Ensure consistent vertical stacking on mobile */
+    }
+
     .workflow-right-col {
-        position: static;
+        position: relative;
         top: auto;
     }
 
@@ -1091,7 +1096,7 @@ h6 {
         height: 400px;
         min-height: auto;
         margin-top: 1rem;
-        position: static;
+        position: relative;
         top: auto;
     }
 }
@@ -1684,9 +1689,20 @@ h6 {
 
 @media (max-width: 767.98px) {
 
-    .experience-badge-modern,
+    .experience-badge-modern {
+        top: -10px;
+        right: -10px;
+    }
+
+    .badge-content {
+        width: 100px;
+        height: 100px;
+    }
+
     .floating-stat-card {
-        display: none !important;
+        bottom: 20px;
+        left: -10px;
+        padding: 12px 18px;
     }
 
     .service-number {
