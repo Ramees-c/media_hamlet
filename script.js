@@ -46,6 +46,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: true });
 
+    // Intersection Observer for Scroll-Spy (Active link update on scroll)
+    const observerOptions = {
+        root: null,
+        rootMargin: '-25% 0px -70% 0px', // Triggers when section occupies the top-middle of viewport
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                });
+            }
+        });
+    }, observerOptions);
+
+    // Observe all sections that have an ID
+    document.querySelectorAll('section[id]').forEach(section => {
+        observer.observe(section);
+    });
+
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -55,6 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (href !== '#') {
                 const target = document.querySelector(href);
                 if (target) {
+                    // Immediate active state switch
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+
                     // Calculate offset for fixed navbar
                     const offset = 100; // Increased to account for the floating navbar margin
                     const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
