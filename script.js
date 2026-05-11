@@ -9,10 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize AOS Animation Library
     AOS.init({
-        duration: 1000,
-        easing: 'ease-out-quart',
+        duration: 800,
+        easing: 'ease-out-back',
         once: true,
         offset: 120,
+        delay: 50
     });
 
     // Navbar scroll effect (Hide on scroll down, show on scroll up)
@@ -159,17 +160,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     const centerX = rect.width / 2;
                     const centerY = rect.height / 2;
 
-                    const rotateX = (y - centerY) / 20;
-                    const rotateY = (centerX - x) / 20;
+                    const rotateX = (y - centerY) / 35;
+                    const rotateY = (centerX - x) / 35;
 
-                    card.style.transition = 'transform 0.1s ease-out';
+                    card.style.transition = 'transform 0.2s cubic-bezier(0.03, 0.98, 0.52, 0.99)';
                     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
                     isMoving = false;
                 });
             });
 
             card.addEventListener('mouseleave', () => {
-                card.style.transition = 'transform 0.5s ease';
+                card.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
                 card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
             });
         });
