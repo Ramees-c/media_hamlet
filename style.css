@@ -1990,10 +1990,10 @@ h6 {
 }
 
 .loader-logo {
-    width: clamp(60px, 12vw, 100px);
+    width: clamp(100px, 17vw, 140px);
     z-index: 2;
     filter: drop-shadow(0 0 0px rgba(251, 82, 61, 0));
-    animation: loaderPulse 2.5s ease-in-out infinite;
+    animation: loaderPulse 1.5s ease-in-out infinite;
 }
 
 .loader-logo img {
@@ -2006,13 +2006,13 @@ h6 {
     0%,
     100% {
         transform: scale(1);
-        filter: drop-shadow(0 0 0px rgba(251, 82, 61, 0));
+        filter: drop-shadow(0 0 5px rgba(251, 82, 61, 0.2));
         opacity: 1;
     }
 
     50% {
-        transform: scale(1.05);
-        filter: drop-shadow(0 0 15px rgba(251, 82, 61, 0.4));
-        opacity: 0.9;
+        transform: scale(0.9);
+        filter: drop-shadow(0 0 30px rgba(251, 82, 61, 0.7));
+        opacity: 0.3;
     }
 }
