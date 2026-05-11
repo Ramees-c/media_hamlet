@@ -102,6 +102,16 @@ h6 {
     mix-blend-mode: overlay;
 }
 
+/* Performance Optimization: Disable heavy filters on mobile */
+@media (max-width: 991.98px) {
+    .noise-overlay,
+    .ambient-glow,
+    .global-bg-elements,
+    .loader-bg-elements {
+        display: none !important;
+    }
+}
+
 /* Ambient Glows */
 .ambient-glow {
     position: fixed;
@@ -323,6 +333,12 @@ h6 {
     background-size: 150% 150%;
     animation: heroGradientShift 12s ease-in-out infinite alternate;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 992px) {
+    .hero-section {
+        padding-top: 30px;
+    }
 }
 
 @keyframes heroGradientShift {
