@@ -412,11 +412,12 @@ h6 {
     background-size: 150% 150%;
     animation: heroGradientShift 12s ease-in-out infinite alternate;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 140px 0 80px;
 }
 
 @media (min-width: 992px) {
     .hero-section {
-        padding-top: 30px;
+        padding: 180px 0 120px;
     }
 }
 
@@ -546,15 +547,15 @@ h6 {
 }
 
 .hero-title {
-    font-size: clamp(3rem, 10vw, 6rem);
-    line-height: 0.9;
+    font-size: clamp(2.5rem, 7vw, 4.25rem);
+    line-height: 1.1;
     letter-spacing: -0.04em;
     font-weight: 800;
     color: var(--text-main);
 }
 
 .hero-text {
-    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
 }
 
 .hero-graphic-container {
@@ -619,7 +620,7 @@ h6 {
 }
 
 .hero-person-img {
-    max-height: 500px;
+    max-height: 420px;
     width: 100%;
     object-fit: contain;
     filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.15));
@@ -845,9 +846,18 @@ h6 {
     backdrop-filter: blur(10px);
     padding: 20px 25px;
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     z-index: 5;
     animation: floating 5s ease-in-out infinite;
+}
+
+.floating-stat-card::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(251, 82, 61, 0.12);
+    border-radius: 15px;
+    pointer-events: none;
 }
 
 .stat-icon {
@@ -1004,8 +1014,7 @@ h6 {
 
 .services-sticky-image {
     width: 100%;
-    height: calc(100vh - 180px);
-    min-height: 400px;
+    height: auto;
     overflow: hidden;
     position: -webkit-sticky;
     position: sticky;
@@ -1022,9 +1031,8 @@ h6 {
 }
 
 .services-sticky-image img {
-    height: 100% !important;
+    height: auto !important;
     width: 100%;
-    object-fit: cover;
     transform: scale(1.1);
     transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -1657,33 +1665,93 @@ h6 {
     border-color: rgba(251, 82, 61, 0.1) !important;
 }
 
-/* Modern Select Styling */
-.form-select.custom-input {
+/* Custom Dropdown Styling (replaces native select) */
+.custom-dropdown-container {
+    position: relative;
+    width: 100%;
+}
+
+.custom-dropdown-display {
+    /* Inherit custom-input styles */
+    background-color: var(--bg-main) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    color: var(--text-main);
+    border-radius: 16px !important;
+    transition: all 0.3s ease;
+    
     cursor: pointer;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fb523d' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E") !important;
     background-position: right 1.25rem center !important;
     background-size: 12px !important;
+    background-repeat: no-repeat;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    appearance: none;
+    
+    display: flex;
+    align-items: center;
+    min-height: calc(3.5rem + 2px); /* Match form-floating height */
     padding-top: 1.625rem !important;
     padding-bottom: 0.625rem !important;
+    padding-left: 1.25rem; /* Match form-floating input padding */
+    font-size: 1rem; /* Match default input font size */
+    line-height: 1.5;
 }
 
-.form-select.custom-input:focus {
+.custom-dropdown-display:focus,
+.custom-dropdown-display.active {
+    background-color: #ffffff !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 10px 20px rgba(251, 82, 61, 0.05) !important;
     background-position: right 1.1rem center !important;
-    /* Subtle arrow shift on focus */
-    box-shadow: 0 10px 25px rgba(251, 82, 61, 0.1) !important;
+    outline: 0; /* Remove default focus outline */
 }
 
-/* Modern styling for native options - Browser support varies by OS */
-.form-select.custom-input option {
-    background-color: #ffffff;
+.custom-dropdown-display:hover {
+    background-color: rgba(251, 82, 61, 0.05) !important;
+    border-color: rgba(251, 82, 61, 0.1) !important;
+}
+
+.custom-dropdown-options {
+    position: absolute;
+    top: 100%; /* Position below the display */
+    left: 0;
+    width: 100%;
+    background: var(--bg-main);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 16px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 100; /* Ensure it's above other content */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    padding: 0.5rem 0;
+}
+
+.custom-dropdown-options.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.custom-dropdown-options li {
+    padding: 0.75rem 1.25rem; /* Match input padding */
     color: var(--text-main);
-    padding: 12px;
-    font-family: var(--font-primary);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.form-floating>label {
+.custom-dropdown-options li:hover,
+.custom-dropdown-options li.selected {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Adjust form-floating label for custom dropdown */
+.form-floating > label {
     padding-left: 1.25rem;
     color: var(--text-muted);
     font-size: 0.9rem;
@@ -1692,8 +1760,14 @@ h6 {
 }
 
 .form-floating>.custom-input:focus~label,
-.form-floating>.custom-input:not(:placeholder-shown)~label,
-.form-floating>select.custom-input~label {
+.form-floating>.custom-input:not(:placeholder-shown)~label {
+    color: var(--primary-color);
+    transform: scale(0.85) translateY(-0.7rem) translateX(0.15rem);
+    opacity: 0.9;
+}
+/* For the custom dropdown, we'll control this via JS by adding a class to the container */
+.form-floating.custom-dropdown-container.dropdown-active > label,
+.form-floating.custom-dropdown-container.dropdown-selected > label {
     color: var(--primary-color);
     transform: scale(0.85) translateY(-0.7rem) translateX(0.15rem);
     opacity: 0.9;
@@ -1729,13 +1803,13 @@ h6 {
     }
 
     .hero-title {
-        font-size: clamp(2.5rem, 8vw, 3.5rem);
+        font-size: clamp(2rem, 6vw, 2.8rem);
         line-height: 1.1;
     }
 
     .hero-text {
         padding-right: 0 !important;
-        font-size: 1.1rem;
+        font-size: 1rem;
         margin-bottom: 2rem !important;
     }
 
@@ -1745,7 +1819,7 @@ h6 {
     }
 
     .hero-person-img {
-        max-height: 400px;
+        max-height: 340px;
     }
 
     .social-floating-icon {
@@ -1820,11 +1894,11 @@ h6 {
 /* Extra small devices (phones, 576px and down) */
 @media (max-width: 575.98px) {
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
     }
 
     .hero-person-img {
-        max-height: 320px;
+        max-height: 260px;
     }
 
     .brand-logo {
@@ -1859,19 +1933,43 @@ h6 {
 @media (max-width: 767.98px) {
 
     .experience-badge-modern {
-        top: -10px;
-        right: -10px;
+        top: -5px;
+        right: -5px;
     }
 
     .badge-content {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
+    }
+
+    .experience-badge-modern .number {
+        font-size: 1.4rem;
+    }
+
+    .experience-badge-modern .label {
+        font-size: 0.5rem;
+        margin-top: 2px;
     }
 
     .floating-stat-card {
-        bottom: 20px;
-        left: -10px;
-        padding: 12px 18px;
+        bottom: 15px;
+        left: -5px;
+        padding: 8px 12px;
+    }
+
+    .floating-stat-card .stat-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+
+    .floating-stat-card .number {
+        font-size: 1.1rem;
+        line-height: 1.1;
+    }
+
+    .floating-stat-card p.small {
+        font-size: 0.55rem !important;
     }
 
     .service-number {

@@ -181,4 +181,82 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Custom Dropdown Initialization and Interaction Logic
+    const initCustomDropdowns = () => {
+        const dropdowns = document.querySelectorAll('.custom-dropdown-container');
+        
+        dropdowns.forEach(dropdown => {
+            const display = dropdown.querySelector('.custom-dropdown-display');
+            const optionsList = dropdown.querySelector('.custom-dropdown-options');
+            const hiddenSelect = dropdown.querySelector('select');
+            
+            if (!display || !optionsList || !hiddenSelect) return;
+
+            // Populate custom options from the hidden native select
+            optionsList.innerHTML = '';
+            Array.from(hiddenSelect.options).forEach(opt => {
+                if (opt.disabled) return;
+                const li = document.createElement('li');
+                li.textContent = opt.textContent;
+                li.setAttribute('data-value', opt.value);
+                optionsList.appendChild(li);
+            });
+
+            // Handle display click to open/close dropdown
+            display.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = optionsList.classList.contains('show');
+                
+                // Close any other open dropdowns first
+                document.querySelectorAll('.custom-dropdown-options.show').forEach(el => el.classList.remove('show'));
+                document.querySelectorAll('.custom-dropdown-display.active').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.custom-dropdown-container.dropdown-active').forEach(el => el.classList.remove('dropdown-active'));
+                
+                if (!isOpen) {
+                    optionsList.classList.add('show');
+                    display.classList.add('active');
+                    dropdown.classList.add('dropdown-active');
+                }
+            });
+
+            // Handle option selection
+            optionsList.addEventListener('click', (e) => {
+                const li = e.target.closest('li');
+                if (li) {
+                    const value = li.getAttribute('data-value');
+                    const text = li.textContent;
+                    
+                    display.textContent = text;
+                    hiddenSelect.value = value;
+                    
+                    // Update visual state and floating label
+                    dropdown.classList.add('dropdown-selected');
+                    optionsList.classList.remove('show');
+                    display.classList.remove('active');
+                    dropdown.classList.remove('dropdown-active');
+                    
+                    optionsList.querySelectorAll('li').forEach(item => item.classList.remove('selected'));
+                    li.classList.add('selected');
+                    
+                    // Trigger change event for potential validation logic
+                    hiddenSelect.dispatchEvent(new Event('change'));
+                }
+            });
+        });
+
+        // Global listener to close dropdown when clicking outside
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.custom-dropdown-options').forEach(el => el.classList.remove('show'));
+            document.querySelectorAll('.custom-dropdown-display').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.custom-dropdown-container').forEach(el => el.classList.remove('dropdown-active'));
+        });
+    };
+
+    initCustomDropdowns();
+
+    // Dynamically set current year in footer
+    const currentYearSpan = document.getElementById('current-year');
+    if (currentYearSpan) {
+        currentYearSpan.textContent = new Date().getFullYear();
+    }
 });
