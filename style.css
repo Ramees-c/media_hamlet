@@ -131,7 +131,6 @@ h6 {
     .testimonial-card, 
     .contact-card, 
     .custom-navbar.scrolled, 
-    .badge-custom,
     .floating-element,
     .social-floating-icon,
     .main-image-frame,
@@ -147,9 +146,14 @@ h6 {
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
     }
 
-    .hero-person-img, .testimonial-slider-wrapper, .logos-ticker-container {
+    .logos-ticker-container {
         mask-image: none !important;
         -webkit-mask-image: none !important;
+    }
+    /* Re-enable mask-image for testimonial slider on small screens */
+    .testimonial-slider-wrapper {
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
 }
 
@@ -303,15 +307,15 @@ h6 {
 }
 
 /* Buttons */
-.btn-primary {
+.primary-btn {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
     color: white;
     transition: all 0.3s ease;
 }
 
-.btn-primary:hover,
-.btn-primary:focus {
+.primary-btn:hover,
+.primary-btn:focus {
     background-color: var(--primary-hover);
     border-color: var(--primary-hover);
     color: white;
@@ -1074,9 +1078,15 @@ h6 {
 
     .services-sticky-image {
         height: auto;
-        min-height: 300px;
         position: relative;
         top: auto;
+    }
+
+    .services-sticky-image img {
+        transform: scale(1); /* Reset scale for mobile to prevent unwanted zoom */
+        object-fit: cover; /* Ensure image covers the container while maintaining aspect ratio */
+        object-position: center; /* Center the image within its container */
+        transition: none; /* Disable transition on mobile for immediate effect */
     }
 
     .services-cards-wrapper {
@@ -1861,9 +1871,10 @@ h6 {
     .navbar-collapse.show .nav-item:nth-child(2) { animation-delay: 0.15s; }
     .navbar-collapse.show .nav-item:nth-child(3) { animation-delay: 0.2s; }
     .navbar-collapse.show .nav-item:nth-child(4) { animation-delay: 0.25s; }
+    .navbar-collapse.show .nav-item:nth-child(5) { animation-delay: 0.3s; }
     .navbar-collapse.show .nav-action {
         animation: mobileNavSlideIn 0.6s var(--ease-out-expo) forwards;
-        animation-delay: 0.3s;
+        animation-delay: 0.35s;
         opacity: 0;
     }
 
@@ -1909,6 +1920,10 @@ h6 {
         width: 34px;
         height: 34px;
         font-size: 0.9rem;
+    }
+
+    #about.section-padding {
+        padding: 30px 0; /* Further decreased for mobile phones */
     }
 
     .portfolio-item-wrapper {

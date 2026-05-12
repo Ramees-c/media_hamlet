@@ -9,16 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize AOS Animation Library
     // Ensure animations only run once per session for better performance
-    const isFirstLoad = !sessionStorage.getItem('aos-initialized');
     AOS.init({
         duration: 800,
         easing: 'ease-out-back',
         once: true,
-        offset: 120,
+        offset: 50, // Reduced offset for better reliability on small mobile screens
         delay: 50,
-        disable: !isFirstLoad
+        disable: false // Always enable AOS so elements don't stay hidden on refresh
     });
-    if (isFirstLoad) sessionStorage.setItem('aos-initialized', 'true');
 
     // Navbar scroll effect (Hide on scroll down, show on scroll up)
     const navbar = document.querySelector('.custom-navbar');
