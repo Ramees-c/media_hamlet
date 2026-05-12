@@ -8,13 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initialize AOS Animation Library
+    // Ensure animations only run once per session for better performance
+    const isFirstLoad = !sessionStorage.getItem('aos-initialized');
     AOS.init({
         duration: 800,
         easing: 'ease-out-back',
         once: true,
         offset: 120,
-        delay: 50
+        delay: 50,
+        disable: !isFirstLoad
     });
+    if (isFirstLoad) sessionStorage.setItem('aos-initialized', 'true');
 
     // Navbar scroll effect (Hide on scroll down, show on scroll up)
     const navbar = document.querySelector('.custom-navbar');
@@ -54,12 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 0
     };
 
+    // Cache nav links for observer performance
+    const navLinks = document.querySelectorAll('.nav-link');
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const id = entry.target.getAttribute('id');
-                const navLinks = document.querySelectorAll('.nav-link');
-                
                 navLinks.forEach(link => {
                     link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
                 });
