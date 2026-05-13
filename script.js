@@ -112,20 +112,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightbox = document.getElementById('portfolioLightbox');
     if (lightbox) {
         const lightboxImg = lightbox.querySelector('.lightbox-image');
-        const lightboxTitle = lightbox.querySelector('.lightbox-title');
-        const lightboxCategory = lightbox.querySelector('.lightbox-category');
         const lightboxClose = lightbox.querySelector('.lightbox-close');
 
         document.querySelectorAll('.portfolio-card').forEach(card => {
             card.addEventListener('click', () => {
                 const img = card.querySelector('img');
-                const title = card.querySelector('h4').textContent;
-                const category = card.querySelector('.category').textContent;
 
                 lightboxImg.src = img.src;
                 lightboxImg.alt = img.alt;
-                if (lightboxTitle) lightboxTitle.textContent = title;
-                if (lightboxCategory) lightboxCategory.textContent = category;
 
                 lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden'; // Prevent scrolling
@@ -214,6 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     optionsList.classList.add('show');
                     display.classList.add('active');
                     dropdown.classList.add('dropdown-active');
+                    dropdown.classList.remove('dropdown-invalid');
                 }
             });
 
@@ -232,6 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     optionsList.classList.remove('show');
                     display.classList.remove('active');
                     dropdown.classList.remove('dropdown-active');
+                    dropdown.classList.remove('dropdown-invalid');
                     
                     optionsList.querySelectorAll('li').forEach(item => item.classList.remove('selected'));
                     li.classList.add('selected');
@@ -256,5 +252,74 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentYearSpan = document.getElementById('current-year');
     if (currentYearSpan) {
         currentYearSpan.textContent = new Date().getFullYear();
+    }
+
+    // Contact Form AJAX Submission
+    const contactForm = document.getElementById('contact-form');
+    const successModalElement = document.getElementById('successModal');
+    const successModal = successModalElement ? new bootstrap.Modal(successModalElement) : null;
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function (e) {
+            // Check HTML5 validation
+            if (!this.checkValidity()) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.classList.add('was-validated');
+                
+                // Handle custom dropdown validation manually
+                const companySelect = this.querySelector('#companyType');
+                if (companySelect && !companySelect.value) {
+                    companySelect.closest('.custom-dropdown-container').classList.add('dropdown-invalid');
+                }
+                return;
+            }
+
+            e.preventDefault();
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    this.reset();
+                    this.classList.remove('was-validated');
+                    // Manually reset custom dropdown UI state
+                    const dropdownDisplay = this.querySelector('.custom-dropdown-display');
+                    if (dropdownDisplay) {
+                        dropdownDisplay.textContent = dropdownDisplay.getAttribute('data-placeholder') || 'Select Category';
+                        const container = dropdownDisplay.closest('.custom-dropdown-container');
+                        container.classList.remove('dropdown-selected');
+                        container.classList.remove('dropdown-invalid');
+                    }
+                    if (successModal) successModal.show();
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (err) {
+                console.log("error");
+                
+            } finally {
+                // Restore button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
+        });
     }
 });
