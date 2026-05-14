@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Subtle Card Tilt Effect - Performance: Only enable for devices with a mouse
     if (window.matchMedia('(pointer: fine)').matches) {
-        const tiltCards = document.querySelectorAll('.service-card, .workflow-step-card');
+        const tiltCards = document.querySelectorAll('.service-card');
         tiltCards.forEach(card => {
             let isMoving = false;
             card.addEventListener('mousemove', (e) => {
@@ -247,6 +247,37 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     initCustomDropdowns();
+
+    // Project Category Filtering Logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectItems = document.querySelectorAll('.project-item');
+
+    if (filterBtns.length > 0) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button state
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                projectItems.forEach(item => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.9)';
+                    
+                    setTimeout(() => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.classList.remove('hidden');
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    }, 300);
+                });
+            });
+        });
+    }
 
     // Dynamically set current year in footer
     const currentYearSpan = document.getElementById('current-year');

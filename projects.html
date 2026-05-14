@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Media Hamlet Projects - Explore our portfolio of creative works across Oman.">
+    <title>Projects - Media Hamlet</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="loader-wrapper">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img src="asstes/brand_logo.png" alt="Media Hamlet">
+            </div>
+        </div>
+    </div>
+
+    <!-- Ambient Background Glows -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="ambient-glow glow-3"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- Global Decorative Elements -->
+    <div class="global-bg-elements">
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        <div class="bg-shape shape-3"></div>
+        <div class="bg-shape shape-4"></div>
+        <div class="bg-shape shape-5"></div>
+        <div class="bg-shape shape-6"></div>
+        <div class="bg-shape shape-7"></div>
+        <div class="bg-shape shape-8"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar scrolled">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="asstes/brand_logo.png" alt="Media Hamlet Logo" class="brand-logo">
+            </a>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <div class="hamburger-icon">
+                    <span></span><span></span><span></span>
+                </div>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="projects.html">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <div class="badge-custom mb-3">Our Work</div>
+                <h1 class="display-4 fw-bold mb-3">Creative <span class="text-gradient">Portfolio</span></h1>
+                <p class="text-secondary mx-auto" style="max-width: 600px;">
+                    Explore our diverse range of projects, from cinematic brand stories to strategic digital campaigns across Oman.
+                </p>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="d-flex flex-wrap justify-content-center gap-2 mb-5" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="photography">Photography</button>
+                <button class="filter-btn" data-filter="videography">Videography</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="marketing">Marketing</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="row g-2" id="projects-grid">
+                <!-- Project Item -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="photography" data-aos="fade-up">
+                    <div class="portfolio-card">
+                        <img src="asstes/portfolio_images/p1.jpeg" alt="Fashion Shoot" loading="lazy">
+                    </div>
+                </div>
+                <!-- Project Item -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="videography" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-card">
+                        <img src="asstes/portfolio_images/p6.jpeg" alt="Brand Film" loading="lazy">
+                    </div>
+                </div>
+                <!-- Project Item -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="branding" data-aos="fade-up" data-aos-delay="200">
+                    <div class="portfolio-card">
+                        <img src="asstes/portfolio_images/p2.jpeg" alt="Logo Design" loading="lazy">
+                    </div>
+                </div>
+                <!-- Project Item -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="marketing" data-aos="fade-up">
+                    <div class="portfolio-card">
+                        <img src="asstes/portfolio_images/p5.jpeg" alt="Social Media" loading="lazy">
+                    </div>
+                </div>
+                <!-- Project Item -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="web" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-card">
+                        <img src="asstes/portfolio_images/p9.jpeg" alt="Website UI" loading="lazy">
+                    </div>
+                </div>
+                <!-- Project Item -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="photography" data-aos="fade-up" data-aos-delay="200">
+                    <div class="portfolio-card">
+                        <img src="asstes/portfolio_images/p8.jpeg" alt="Product Photography" loading="lazy">
+                    </div>
+                </div>
+                <!-- New Project Item -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="videography" data-aos="fade-up">
+                    <div class="portfolio-card">
+                        <img src="asstes/portfolio_images/p7.jpeg" alt="Event Highlight" loading="lazy">
+                    </div>
+                </div>
+                <!-- New Project Item -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="branding" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-card">
+                        <img src="asstes/portfolio_images/p3.jpeg" alt="Conference Branding" loading="lazy">
+                    </div>
+                </div>
+                <!-- New Project Item -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="marketing" data-aos="fade-up" data-aos-delay="200">
+                    <div class="portfolio-card">
+                        <img src="asstes/portfolio_images/p4.jpeg" alt="Digital Marketing Strategy" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 project-item" data-category="photography" data-aos="fade-up">
+                    <div class="portfolio-card">
+                        <img src="asstes/portfolio_images/p12.jpeg" alt="Product Photography" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 project-item" data-category="web" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-card">
+                        <img src="asstes/portfolio_images/p10.jpeg" alt="E-commerce Website" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 project-item" data-category="branding" data-aos="fade-up" data-aos-delay="200">
+                    <div class="portfolio-card">
+                        <img src="asstes/portfolio_images/p11.jpeg" alt="Brand Guidelines" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="custom-footer py-5 mt-0">
+        <div class="container">
+            <div class="row gy-5">
+                <div class="col-lg-5 col-md-12" data-aos="fade-up">
+                    <img src="asstes/brand_logo.png" alt="Media Hamlet Logo" class="brand-logo mb-4">
+                    <p class="text-secondary mb-4 pe-lg-5">
+                        Media Hamlet is a creative media agency in Oman delivering powerful branding, social media marketing, photography, videography, and web development solutions designed to help businesses grow and stand out.
+                    </p>
+                    <div class="social-icons d-flex gap-2">
+                        <a href="#" class="social-icon-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icon-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon-link"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="social-icon-link"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <h5 class="fw-bold mb-4">Navigation</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="index.html#home" class="footer-link">Home</a></li>
+                        <li><a href="index.html#about" class="footer-link">About Us</a></li>
+                        <li><a href="projects.html" class="footer-link">Portfolio</a></li>
+                        <li><a href="index.html#contact" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <h5 class="fw-bold mb-4">Location</h5>
+                    <div class="rounded-4 overflow-hidden shadow-sm" style="width: 100%; height: 200px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.0954622820022!2d58.54855897511026!3d23.60090907877264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e91f911d15bbdff%3A0xdb22372e76573a17!2sMedia%20Hamlet%20Oman!5e0!3m2!1sen!2sin!4v1778687226779!5m2!1sen!2sin" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 pt-4 border-top border-dark border-opacity-10 align-items-center">
+                <div class="col-12 text-center">
+                    <p class="text-secondary small mb-0">&copy; <span id="current-year"></span> <span class="text-primary fw-bold">Media Hamlet</span>. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Portfolio Lightbox Overlay (Shared component) -->
+    <div id="portfolioLightbox" class="lightbox-overlay">
+        <div class="lightbox-content">
+            <span class="lightbox-close"><i class="bi bi-x-lg"></i></span>
+            <img class="lightbox-image" src="" alt="Portfolio Large View">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Page specific navigation scroll override
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.custom-navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>
