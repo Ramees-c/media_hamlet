@@ -5,6 +5,147 @@ document.addEventListener('DOMContentLoaded', () => {
         if (loader) {
             loader.classList.add('loaded');
         }
+
+        // Initialize Draggable Infinite Sliders
+        const draggables = document.querySelectorAll('.portfolio-track, .testimonial-slider-track, .logos-ticker, .team-slider-track');
+        
+        draggables.forEach(track => {
+            track.style.animation = 'none';
+            
+            let isDown = false;
+            let isHovered = false;
+            let startX;
+            let currentX = 0;
+            let hasDragged = false;
+            
+            let isRight = track.classList.contains('track-right');
+            let duration = 30;
+            if (track.classList.contains('track-left') || track.classList.contains('track-right')) duration = 25;
+            else if (track.classList.contains('testimonial-slider-track')) duration = 40;
+            else if (track.classList.contains('team-slider-track')) duration = 50;
+            
+            let speedDirection = isRight ? 1 : -1;
+            
+            let startY = 0;
+            let isDraggingHorizontally = false;
+            
+            let baseCursor = track.classList.contains('portfolio-track') ? 'grab' : 'auto';
+            let dragCursor = track.classList.contains('portfolio-track') ? 'grabbing' : 'auto';
+            
+            track.style.cursor = baseCursor;
+            
+            track.addEventListener('mousedown', (e) => {
+                isDown = true;
+                hasDragged = false;
+                startX = e.pageX;
+                track.style.cursor = dragCursor;
+            });
+            
+            track.addEventListener('mouseenter', () => isHovered = true);
+            
+            track.addEventListener('mouseleave', () => {
+                isHovered = false;
+                if (isDown) {
+                    isDown = false;
+                    track.style.cursor = baseCursor;
+                }
+            });
+            
+            window.addEventListener('mouseup', () => {
+                if (isDown) {
+                    isDown = false;
+                    track.style.cursor = baseCursor;
+                }
+            });
+            
+            window.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX;
+                const walk = (x - startX);
+                if (Math.abs(walk) > 3) hasDragged = true;
+                startX = x;
+                currentX += walk;
+            });
+            
+            track.addEventListener('touchstart', (e) => {
+                isDown = true;
+                hasDragged = false;
+                startX = e.touches[0].pageX;
+                startY = e.touches[0].pageY;
+                isDraggingHorizontally = false;
+            }, {passive: true});
+            
+            window.addEventListener('touchend', () => {
+                isDown = false;
+            });
+            
+            window.addEventListener('touchmove', (e) => {
+                if (!isDown) return;
+                
+                const x = e.touches[0].pageX;
+                const y = e.touches[0].pageY;
+                
+                if (!isDraggingHorizontally) {
+                    if (Math.abs(x - startX) > Math.abs(y - startY)) {
+                        isDraggingHorizontally = true;
+                    } else {
+                        isDown = false;
+                        return;
+                    }
+                }
+                
+                if (isDraggingHorizontally && e.cancelable) {
+                    e.preventDefault();
+                }
+                
+                const walk = (x - startX);
+                if (Math.abs(walk) > 3) hasDragged = true;
+                startX = x;
+                currentX += walk;
+            }, {passive: false});
+
+            track.addEventListener('click', (e) => {
+                if (hasDragged) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }, {capture: true});
+
+            track.querySelectorAll('img, a').forEach(el => {
+                el.addEventListener('dragstart', (e) => e.preventDefault());
+            });
+
+            let lastTime = performance.now();
+
+            function update(time) {
+                const deltaTime = time - lastTime;
+                lastTime = time;
+                
+                const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
+                const totalWidth = track.scrollWidth;
+                const halfWidth = (totalWidth + gap) / 2;
+                
+                if (halfWidth > 0) {
+                    const speed_px_per_ms = halfWidth / (duration * 1000);
+                    
+                    if (!isDown && !isHovered) {
+                        currentX += speedDirection * speed_px_per_ms * deltaTime;
+                    }
+                    
+                    if (currentX <= -halfWidth) {
+                        currentX = currentX % halfWidth;
+                    } else if (currentX > 0) {
+                        currentX = (currentX % halfWidth) - halfWidth;
+                    }
+                    
+                    track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+                }
+                requestAnimationFrame(update);
+            }
+            
+            requestAnimationFrame(update);
+        });
     });
 
     // Initialize AOS Animation Library
