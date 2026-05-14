@@ -13,7 +13,7 @@
     --text-main: #1a1a1a;
     --text-muted: #6c757d;
     --gradient-primary: linear-gradient(135deg, #fb523d 0%, #ff8e7d 100%);
-    --font-primary: 'Inter', sans-serif;
+    --font-primary: 'Poppins', sans-serif;
     --font-title: 'Outfit', sans-serif;
     --glass-bg: rgba(255, 255, 255, 0.7);
     --glass-border: rgba(255, 255, 255, 0.8);
@@ -438,7 +438,10 @@ h6 {
 
 @media (min-width: 992px) {
     .hero-section {
-        padding: 180px 0 120px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 120px 0 80px;
     }
 }
 
@@ -657,6 +660,32 @@ h6 {
     -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 95%);
 }
 
+/* Increase hero image size and section padding for larger screens */
+@media (min-width: 1200px) {
+    .hero-person-img {
+        max-height: 600px;
+        /* Increased size for big screens */
+    }
+
+    .hero-section {
+        padding: 130px 0 100px;
+        /* Balanced padding for vh height */
+    }
+}
+
+@media (min-width: 1400px) {
+
+    /* Even larger screens */
+    .hero-person-img {
+        max-height: 680px;
+        /* Further increased size */
+    }
+
+    .hero-section {
+        padding: 140px 0 110px;
+    }
+}
+
 .social-floating-icon {
     position: absolute;
     width: 45px;
@@ -680,35 +709,45 @@ h6 {
 
 .icon-ig {
     top: 5%;
+    /* Keep */
     left: 95%;
+    /* Keep */
     color: #E1306C;
     animation-delay: 0s;
 }
 
 .icon-fb {
-    top: 50%;
-    left: 110%;
+    top: 35%;
+    /* Adjusted to be higher */
+    left: 98%;
+    /* Adjusted to be closer to the right edge */
     color: #1877F2;
     animation-delay: 1.5s;
 }
 
 .icon-ln {
-    top: 50%;
-    left: -10%;
+    top: 35%;
+    /* Adjusted to be higher */
+    left: 2%;
+    /* Adjusted to be closer to the left edge */
     color: #0A66C2;
     animation-delay: 3s;
 }
 
 .icon-tk {
-    top: 110%;
+    top: 90%;
+    /* Adjusted to be higher, closer to the bottom of the visible image */
     left: 50%;
+    /* Keep centered */
     color: #000000;
     animation-delay: 4.5s;
 }
 
 .icon-sc {
-    top: -10%;
+    top: 2%;
+    /* Adjusted to be closer to the top edge */
     left: 50%;
+    /* Keep centered */
     color: #FFFC00;
     animation-delay: 0.8s;
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
@@ -2375,6 +2414,8 @@ h6 {
     opacity: 0;
     transition: all 0.5s var(--ease-out-expo);
     z-index: 2;
+    pointer-events: none;
+    /* Prevent interaction when hidden */
 }
 
 .team-role-badge {
@@ -2412,23 +2453,50 @@ h6 {
     background: var(--primary-hover);
 }
 
-.team-card:hover {
+/* Styles for when details are shown (for touch devices) */
+.team-card.show-details {
     transform: translateY(-10px);
+    /* Apply the same lift as hover */
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
     border-color: rgba(251, 82, 61, 0.1);
 }
 
-.team-card:hover::before {
+.team-card.show-details::before {
     opacity: 1;
 }
 
-.team-card:hover .team-img {
+.team-card.show-details .team-img {
     transform: scale(1.08);
 }
 
-.team-card:hover .team-info {
+.team-card.show-details .team-info {
     transform: translateY(0);
     opacity: 1;
+    pointer-events: auto;
+    /* Allow interaction when visible */
+}
+
+/* Hover effects for non-touch devices only */
+@media (hover: hover) and (pointer: fine) {
+    .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+        border-color: rgba(251, 82, 61, 0.1);
+    }
+
+    .team-card:hover::before {
+        opacity: 1;
+    }
+
+    .team-card:hover .team-img {
+        transform: scale(1.08);
+    }
+
+    .team-card:hover .team-info {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
 }
 
 @keyframes team-slide {
@@ -2506,6 +2574,15 @@ h6 {
     box-shadow: 0 30px 60px rgba(251, 82, 61, 0.15);
     border-color: rgba(251, 82, 61, 0.2);
 }
+
+/* Performance optimization: Hint to the browser that these properties will change */
+.portfolio-track,
+.testimonial-slider-track,
+.logos-ticker,
+.team-slider-track {
+    will-change: transform;
+}
+
 
 .portfolio-card:hover img {
     transform: scale(1.1);

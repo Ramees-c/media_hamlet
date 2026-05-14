@@ -12,8 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
         draggables.forEach(track => {
             track.style.animation = 'none';
             
-            let isDown = false;
-            let isHovered = false;
+            track.isDown = false; // Attach to track element
+            track.isHovered = false; // Attach to track element
+            track.isDetailsOpen = false; // Attach to track element
             let startX;
             let currentX = 0;
             let hasDragged = false;
@@ -35,53 +36,75 @@ document.addEventListener('DOMContentLoaded', () => {
             track.style.cursor = baseCursor;
             
             track.addEventListener('mousedown', (e) => {
-                isDown = true;
+                track.isDown = true;
                 hasDragged = false;
                 startX = e.pageX;
                 track.style.cursor = dragCursor;
+                // Stop automatic animation when dragging starts
+                track.stopAutoAnimation();
             });
             
-            track.addEventListener('mouseenter', () => isHovered = true);
+            track.addEventListener('mouseenter', () => {
+                if (window.matchMedia('(hover: hover)').matches) {
+                    track.isHovered = true;
+                }
+            });
             
             track.addEventListener('mouseleave', () => {
-                isHovered = false;
-                if (isDown) {
-                    isDown = false;
+                track.isHovered = false;
+                if (track.isDown) {
+                    track.isDown = false;
                     track.style.cursor = baseCursor;
+                }
+                // Resume automatic animation if not dragging and not hovered
+                if (!track.isDown && !track.isHovered && track.isTrackVisible) {
+                    track.startAutoAnimation();
                 }
             });
             
             window.addEventListener('mouseup', () => {
-                if (isDown) {
-                    isDown = false;
+                if (track.isDown) {
+                    track.isDown = false;
                     track.style.cursor = baseCursor;
+                }
+                // Resume automatic animation if not dragging and not hovered
+                if (!track.isDown && !track.isHovered && track.isTrackVisible) {
+                    track.startAutoAnimation();
                 }
             });
             
             window.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
+                if (!track.isDown) return;
                 e.preventDefault();
                 const x = e.pageX;
                 const walk = (x - startX);
                 if (Math.abs(walk) > 3) hasDragged = true;
                 startX = x;
                 currentX += walk;
+                // Apply transform immediately during drag
+                track.style.transform = `translate3d(${currentX.toFixed(2)}px, 0, 0)`;
             });
             
             track.addEventListener('touchstart', (e) => {
-                isDown = true;
+                track.isDown = true;
                 hasDragged = false;
                 startX = e.touches[0].pageX;
                 startY = e.touches[0].pageY;
                 isDraggingHorizontally = false;
+                // Stop automatic animation when dragging starts
+                track.stopAutoAnimation();
             }, {passive: true});
             
             window.addEventListener('touchend', () => {
-                isDown = false;
+                track.isDown = false;
+                // Resume automatic animation if not dragging and not hovered
+                if (!track.isDown && !track.isHovered && track.isTrackVisible) {
+                    track.startAutoAnimation();
+                }
             });
             
             window.addEventListener('touchmove', (e) => {
-                if (!isDown) return;
+                if (!track.isDown) return;
                 
                 const x = e.touches[0].pageX;
                 const y = e.touches[0].pageY;
@@ -90,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (Math.abs(x - startX) > Math.abs(y - startY)) {
                         isDraggingHorizontally = true;
                     } else {
-                        isDown = false;
+                        track.isDown = false;
                         return;
                     }
                 }
@@ -103,6 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (Math.abs(walk) > 3) hasDragged = true;
                 startX = x;
                 currentX += walk;
+                // Apply transform immediately during drag
+                track.style.transform = `translate3d(${currentX.toFixed(2)}px, 0, 0)`;
             }, {passive: false});
 
             track.addEventListener('click', (e) => {
@@ -116,37 +141,91 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.addEventListener('dragstart', (e) => e.preventDefault());
             });
 
-            let lastTime = performance.now();
+            let lastTime = performance.now(); // Initialized here, but reset in startAnimation
+            let gap, halfWidth, speed_px_per_ms;
+            let animationFrameId = null; // To store the requestAnimationFrame ID
+            track.isTrackVisible = false; // Attach to track element
 
-            function update(time) {
+            // Cache dimensions outside the animation loop to prevent layout thrashing
+            function calculateDimensions() {
+                const style = window.getComputedStyle(track);
+                gap = parseFloat(style.gap) || 0;
+                const totalWidth = track.scrollWidth;
+                halfWidth = (totalWidth + gap) / 2;
+                speed_px_per_ms = halfWidth / (duration * 1000);
+            }
+
+            calculateDimensions();
+            window.addEventListener('resize', () => {
+                calculateDimensions();
+                // If animation is running, restart it to apply new dimensions correctly
+                if (track.animationFrameId) { // Use track.animationFrameId
+                    track.stopAutoAnimation();
+                    track.startAutoAnimation();
+                }
+            });
+
+            // The core animation logic, now separated from the RAF loop management
+            function animateLogic(time) {
                 const deltaTime = time - lastTime;
                 lastTime = time;
-                
-                const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
-                const totalWidth = track.scrollWidth;
-                const halfWidth = (totalWidth + gap) / 2;
-                
+
                 if (halfWidth > 0) {
-                    const speed_px_per_ms = halfWidth / (duration * 1000);
-                    
-                    if (!isDown && !isHovered) {
+                    // Only advance automatically if not being dragged or hovered (use track properties)
+                    if (!track.isDown && !track.isHovered && !track.isDetailsOpen) {
                         currentX += speedDirection * speed_px_per_ms * deltaTime;
                     }
-                    
+
+                    // Seamless loop logic: adding/subtracting is smoother than modulus for sub-pixel values
                     if (currentX <= -halfWidth) {
-                        currentX = currentX % halfWidth;
+                        currentX += halfWidth;
                     } else if (currentX > 0) {
-                        currentX = (currentX % halfWidth) - halfWidth;
+                        currentX -= halfWidth;
                     }
-                    
-                    track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+
+                    track.style.transform = `translate3d(${currentX.toFixed(2)}px, 0, 0)`;
                 }
-                requestAnimationFrame(update);
             }
-            
-            requestAnimationFrame(update);
+
+            // Functions to start and stop the animation loop
+            const startAnimation = () => {
+                if (!animationFrameId) { // Only start if not already running
+                    lastTime = performance.now(); // Reset lastTime to prevent huge jumps after a pause
+                    animationFrameId = requestAnimationFrame(function loop(time) {
+                        animateLogic(time);
+                        animationFrameId = requestAnimationFrame(loop);
+                    });
+                }
+            };
+            track.startAutoAnimation = startAnimation; // Store reference on the track element
+
+            const stopAnimation = () => {
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                    animationFrameId = null;
+                }
+            };
+            track.stopAutoAnimation = stopAnimation; // Store reference on the track element
+
+            // Intersection Observer to manage animation based on visibility
+            const trackObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    track.isTrackVisible = entry.isIntersecting; // Update track property
+                    if (track.isTrackVisible && !track.isDown && !track.isHovered) { // Only start if visible AND not dragging/hovered
+                        track.startAutoAnimation();
+                    } else {
+                        track.stopAutoAnimation();
+                    }
+                });
+            }, { threshold: 0 }); // Trigger when any part of the element is visible
+
+            trackObserver.observe(track);
         });
     });
+
+    // Global variable to keep track of the currently active team card for touch devices
+    let activeTeamCard = null;
+
 
     // Initialize AOS Animation Library
     // Ensure animations only run once per session for better performance
@@ -494,4 +573,60 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Team Card Touch/Click Logic for showing/hiding details
+    const teamCards = document.querySelectorAll('.team-card');
+
+    // Function to hide details of all team cards
+    const hideAllTeamCardDetails = () => {
+        teamCards.forEach(card => {
+            card.classList.remove('show-details');
+        });
+        // After hiding details, restart the animation for the relevant team slider
+        if (activeTeamCard) {
+            const teamSliderTrack = activeTeamCard.closest('.team-slider-track');
+            if (teamSliderTrack) {
+                teamSliderTrack.isDetailsOpen = false;
+                if (teamSliderTrack.startAutoAnimation && teamSliderTrack.isTrackVisible && !teamSliderTrack.isDown && !teamSliderTrack.isHovered) {
+                    teamSliderTrack.startAutoAnimation();
+                }
+            }
+        }
+        activeTeamCard = null;
+    };
+
+    teamCards.forEach(card => {
+        // Use a single click event listener. The slider's click handler (if it's a team-slider-track)
+        // already prevents the click event from propagating if a drag occurred.
+        // So, if this click event fires, it means it was a genuine tap/click.
+        card.addEventListener('click', (e) => {
+            // Stop propagation to prevent the global document click listener from immediately
+            // hiding the details we're about to show.
+            e.stopPropagation();
+
+            if (activeTeamCard === card) {
+                // If the same card is tapped/clicked again, hide its details
+                hideAllTeamCardDetails();
+            } else {
+                // Hide any currently active card's details before showing the new one
+                hideAllTeamCardDetails();
+
+                // Show details for the tapped/clicked card
+                card.classList.add('show-details');
+                activeTeamCard = card;
+                
+                const teamSliderTrack = card.closest('.team-slider-track');
+                if (teamSliderTrack) {
+                    teamSliderTrack.isDetailsOpen = true;
+                }
+            }
+        });
+    });
+
+    // Global listener to hide details if user taps/clicks outside any team card
+    document.addEventListener('click', (e) => {
+        if (activeTeamCard && !activeTeamCard.contains(e.target)) {
+            hideAllTeamCardDetails();
+        }
+    });
 });
