@@ -11,7 +11,7 @@
     --bg-main: #fffaf9;
     --card-bg: #f8f9fa;
     --text-main: #1a1a1a;
-    --text-muted: #6c757d;
+    --text-muted: #4a5568;
     --gradient-primary: linear-gradient(135deg, #fb523d 0%, #ff8e7d 100%);
     --font-primary: 'Poppins', sans-serif;
     --font-title: 'Outfit', sans-serif;
@@ -94,6 +94,10 @@ h6 {
 }
 
 .text-secondary {
+    color: var(--text-muted) !important;
+}
+
+.text-muted {
     color: var(--text-muted) !important;
 }
 
@@ -1053,14 +1057,14 @@ h6 {
     right: 40px;
     font-size: 5rem;
     font-weight: 800;
-    color: rgba(0, 0, 0, 0.02);
+    color: rgba(0, 0, 0, 0.05);
     line-height: 1;
     pointer-events: none;
     transition: all 0.4s ease;
 }
 
 .service-card:hover .service-number {
-    color: rgba(251, 82, 61, 0.06);
+    color: rgba(251, 82, 61, 0.12);
     transform: translateY(-5px);
 }
 

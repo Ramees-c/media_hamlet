@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
         draggables.forEach(track => {
             track.style.animation = 'none';
             
+            // Helper to check for hover capability
+            const hasHover = () => window.matchMedia('(hover: hover)').matches;
+            
             track.isDown = false; // Attach to track element
             track.isHovered = false; // Attach to track element
             track.isDetailsOpen = false; // Attach to track element
@@ -45,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             
             track.addEventListener('mouseenter', () => {
-                if (window.matchMedia('(hover: hover)').matches) {
+                if (hasHover()) {
                     track.isHovered = true;
                 }
             });
@@ -221,11 +224,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
             trackObserver.observe(track);
         });
+
+        // Team Card Touch/Click Logic for showing/hiding details
+        // Moved inside window.load to ensure tracks are initialized with auto-slide properties
+        const teamCards = document.querySelectorAll('.team-card');
+        let activeTeamCard = null;
+
+        // Function to hide details of all team cards
+        const hideAllTeamCardDetails = () => {
+            teamCards.forEach(card => {
+                card.classList.remove('show-details');
+            });
+            // After hiding details, restart the animation for the relevant team slider
+            if (activeTeamCard) {
+                const teamSliderTrack = activeTeamCard.closest('.team-slider-track');
+                if (teamSliderTrack) {
+                    teamSliderTrack.isDetailsOpen = false;
+                    if (teamSliderTrack.startAutoAnimation && teamSliderTrack.isTrackVisible && !teamSliderTrack.isDown && !teamSliderTrack.isHovered) {
+                        teamSliderTrack.startAutoAnimation();
+                    }
+                }
+            }
+            activeTeamCard = null;
+        };
+
+        teamCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                if (activeTeamCard === card) {
+                    hideAllTeamCardDetails();
+                } else {
+                    hideAllTeamCardDetails();
+
+                    card.classList.add('show-details');
+                    activeTeamCard = card;
+                    
+                    const teamSliderTrack = card.closest('.team-slider-track');
+                    if (teamSliderTrack) {
+                        teamSliderTrack.isDetailsOpen = true;
+                    }
+                }
+            });
+        });
+
+        // Global listener to hide details if user taps/clicks outside any team card
+        document.addEventListener('click', (e) => {
+            if (activeTeamCard && !activeTeamCard.contains(e.target)) {
+                hideAllTeamCardDetails();
+            }
+        });
     });
-
-    // Global variable to keep track of the currently active team card for touch devices
-    let activeTeamCard = null;
-
 
     // Initialize AOS Animation Library
     // Ensure animations only run once per session for better performance
@@ -573,60 +622,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // Team Card Touch/Click Logic for showing/hiding details
-    const teamCards = document.querySelectorAll('.team-card');
-
-    // Function to hide details of all team cards
-    const hideAllTeamCardDetails = () => {
-        teamCards.forEach(card => {
-            card.classList.remove('show-details');
-        });
-        // After hiding details, restart the animation for the relevant team slider
-        if (activeTeamCard) {
-            const teamSliderTrack = activeTeamCard.closest('.team-slider-track');
-            if (teamSliderTrack) {
-                teamSliderTrack.isDetailsOpen = false;
-                if (teamSliderTrack.startAutoAnimation && teamSliderTrack.isTrackVisible && !teamSliderTrack.isDown && !teamSliderTrack.isHovered) {
-                    teamSliderTrack.startAutoAnimation();
-                }
-            }
-        }
-        activeTeamCard = null;
-    };
-
-    teamCards.forEach(card => {
-        // Use a single click event listener. The slider's click handler (if it's a team-slider-track)
-        // already prevents the click event from propagating if a drag occurred.
-        // So, if this click event fires, it means it was a genuine tap/click.
-        card.addEventListener('click', (e) => {
-            // Stop propagation to prevent the global document click listener from immediately
-            // hiding the details we're about to show.
-            e.stopPropagation();
-
-            if (activeTeamCard === card) {
-                // If the same card is tapped/clicked again, hide its details
-                hideAllTeamCardDetails();
-            } else {
-                // Hide any currently active card's details before showing the new one
-                hideAllTeamCardDetails();
-
-                // Show details for the tapped/clicked card
-                card.classList.add('show-details');
-                activeTeamCard = card;
-                
-                const teamSliderTrack = card.closest('.team-slider-track');
-                if (teamSliderTrack) {
-                    teamSliderTrack.isDetailsOpen = true;
-                }
-            }
-        });
-    });
-
-    // Global listener to hide details if user taps/clicks outside any team card
-    document.addEventListener('click', (e) => {
-        if (activeTeamCard && !activeTeamCard.contains(e.target)) {
-            hideAllTeamCardDetails();
-        }
-    });
 });
