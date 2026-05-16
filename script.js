@@ -8,36 +8,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Initialize Draggable Infinite Sliders
         const draggables = document.querySelectorAll('.portfolio-track, .testimonial-slider-track, .logos-ticker, .team-slider-track');
-        
+
         draggables.forEach(track => {
             track.style.animation = 'none';
-            
+
             // Helper to check for hover capability
             const hasHover = () => window.matchMedia('(hover: hover)').matches;
-            
+
             track.isDown = false; // Attach to track element
             track.isHovered = false; // Attach to track element
             track.isDetailsOpen = false; // Attach to track element
             let startX;
             let currentX = 0;
             let hasDragged = false;
-            
+
             let isRight = track.classList.contains('track-right');
             let duration = 30;
             if (track.classList.contains('track-left') || track.classList.contains('track-right')) duration = 25;
             else if (track.classList.contains('testimonial-slider-track')) duration = 40;
             else if (track.classList.contains('team-slider-track')) duration = 50;
-            
+
             let speedDirection = isRight ? 1 : -1;
-            
+
             let startY = 0;
             let isDraggingHorizontally = false;
-            
+
             let baseCursor = track.classList.contains('portfolio-track') ? 'grab' : 'auto';
             let dragCursor = track.classList.contains('portfolio-track') ? 'grabbing' : 'auto';
-            
+
             track.style.cursor = baseCursor;
-            
+
             track.addEventListener('mousedown', (e) => {
                 track.isDown = true;
                 hasDragged = false;
@@ -46,13 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Stop automatic animation when dragging starts
                 track.stopAutoAnimation();
             });
-            
+
             track.addEventListener('mouseenter', () => {
                 if (hasHover()) {
                     track.isHovered = true;
                 }
             });
-            
+
             track.addEventListener('mouseleave', () => {
                 track.isHovered = false;
                 if (track.isDown) {
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     track.startAutoAnimation();
                 }
             });
-            
+
             window.addEventListener('mouseup', () => {
                 if (track.isDown) {
                     track.isDown = false;
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     track.startAutoAnimation();
                 }
             });
-            
+
             window.addEventListener('mousemove', (e) => {
                 if (!track.isDown) return;
                 e.preventDefault();
@@ -87,31 +87,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Apply transform immediately during drag
                 track.style.transform = `translate3d(${currentX.toFixed(2)}px, 0, 0)`;
             });
-            
+
             track.addEventListener('touchstart', (e) => {
                 track.isDown = true;
+                track.isHovered = false; // Reset hover state to prevent sticky hover on mobile
                 hasDragged = false;
                 startX = e.touches[0].pageX;
                 startY = e.touches[0].pageY;
                 isDraggingHorizontally = false;
                 // Stop automatic animation when dragging starts
                 track.stopAutoAnimation();
-            }, {passive: true});
-            
+            }, { passive: true });
+
             window.addEventListener('touchend', () => {
                 track.isDown = false;
                 // Resume automatic animation if not dragging and not hovered
-                if (!track.isDown && !track.isHovered && track.isTrackVisible) {
+                if (!track.isDown && track.isTrackVisible) {
                     track.startAutoAnimation();
                 }
             });
-            
+
             window.addEventListener('touchmove', (e) => {
                 if (!track.isDown) return;
-                
+
                 const x = e.touches[0].pageX;
                 const y = e.touches[0].pageY;
-                
+
                 if (!isDraggingHorizontally) {
                     if (Math.abs(x - startX) > Math.abs(y - startY)) {
                         isDraggingHorizontally = true;
@@ -120,25 +121,25 @@ document.addEventListener('DOMContentLoaded', () => {
                         return;
                     }
                 }
-                
+
                 if (isDraggingHorizontally && e.cancelable) {
                     e.preventDefault();
                 }
-                
+
                 const walk = (x - startX);
                 if (Math.abs(walk) > 3) hasDragged = true;
                 startX = x;
                 currentX += walk;
                 // Apply transform immediately during drag
                 track.style.transform = `translate3d(${currentX.toFixed(2)}px, 0, 0)`;
-            }, {passive: false});
+            }, { passive: false });
 
             track.addEventListener('click', (e) => {
                 if (hasDragged) {
                     e.preventDefault();
                     e.stopPropagation();
                 }
-            }, {capture: true});
+            }, { capture: true });
 
             track.querySelectorAll('img, a').forEach(el => {
                 el.addEventListener('dragstart', (e) => e.preventDefault());
@@ -162,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.addEventListener('resize', () => {
                 calculateDimensions();
                 // If animation is running, restart it to apply new dimensions correctly
-                if (track.animationFrameId) { // Use track.animationFrameId
+                if (animationFrameId) { 
                     track.stopAutoAnimation();
                     track.startAutoAnimation();
                 }
@@ -240,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const teamSliderTrack = activeTeamCard.closest('.team-slider-track');
                 if (teamSliderTrack) {
                     teamSliderTrack.isDetailsOpen = false;
-                    if (teamSliderTrack.startAutoAnimation && teamSliderTrack.isTrackVisible && !teamSliderTrack.isDown && !teamSliderTrack.isHovered) {
+                    if (teamSliderTrack.startAutoAnimation && teamSliderTrack.isTrackVisible && !teamSliderTrack.isDown) {
                         teamSliderTrack.startAutoAnimation();
                     }
                 }
@@ -259,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     card.classList.add('show-details');
                     activeTeamCard = card;
-                    
+
                     const teamSliderTrack = card.closest('.team-slider-track');
                     if (teamSliderTrack) {
                         teamSliderTrack.isDetailsOpen = true;
@@ -291,6 +292,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.custom-navbar');
     let lastScrollY = window.scrollY;
     let ticking = false;
+
+    // Set initial navbar state on page load or refresh
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
 
     window.addEventListener('scroll', () => {
         if (!ticking) {
@@ -445,12 +453,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Custom Dropdown Initialization and Interaction Logic
     const initCustomDropdowns = () => {
         const dropdowns = document.querySelectorAll('.custom-dropdown-container');
-        
+
         dropdowns.forEach(dropdown => {
             const display = dropdown.querySelector('.custom-dropdown-display');
             const optionsList = dropdown.querySelector('.custom-dropdown-options');
             const hiddenSelect = dropdown.querySelector('select');
-            
+
             if (!display || !optionsList || !hiddenSelect) return;
 
             // Populate custom options from the hidden native select
@@ -467,12 +475,12 @@ document.addEventListener('DOMContentLoaded', () => {
             display.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const isOpen = optionsList.classList.contains('show');
-                
+
                 // Close any other open dropdowns first
                 document.querySelectorAll('.custom-dropdown-options.show').forEach(el => el.classList.remove('show'));
                 document.querySelectorAll('.custom-dropdown-display.active').forEach(el => el.classList.remove('active'));
                 document.querySelectorAll('.custom-dropdown-container.dropdown-active').forEach(el => el.classList.remove('dropdown-active'));
-                
+
                 if (!isOpen) {
                     optionsList.classList.add('show');
                     display.classList.add('active');
@@ -487,20 +495,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (li) {
                     const value = li.getAttribute('data-value');
                     const text = li.textContent;
-                    
+
                     display.textContent = text;
                     hiddenSelect.value = value;
-                    
+
                     // Update visual state and floating label
                     dropdown.classList.add('dropdown-selected');
                     optionsList.classList.remove('show');
                     display.classList.remove('active');
                     dropdown.classList.remove('dropdown-active');
                     dropdown.classList.remove('dropdown-invalid');
-                    
+
                     optionsList.querySelectorAll('li').forEach(item => item.classList.remove('selected'));
                     li.classList.add('selected');
-                    
+
                     // Trigger change event for potential validation logic
                     hiddenSelect.dispatchEvent(new Event('change'));
                 }
@@ -533,7 +541,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 projectItems.forEach(item => {
                     item.style.opacity = '0';
                     item.style.transform = 'scale(0.9)';
-                    
+
                     setTimeout(() => {
                         if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
                             item.classList.remove('hidden');
@@ -566,7 +574,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 e.stopPropagation();
                 this.classList.add('was-validated');
-                
+
                 // Handle custom dropdown validation manually
                 const companySelect = this.querySelector('#companyType');
                 if (companySelect && !companySelect.value) {
@@ -614,7 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (err) {
                 console.log("error");
-                
+
             } finally {
                 // Restore button state
                 submitBtn.disabled = false;
