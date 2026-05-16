@@ -2037,8 +2037,15 @@ h6 {
     }
 
     .cta-banner h2 {
-        font-size: clamp(1.75rem, 7vw, 2.5rem);
+        font-size: clamp(1.6rem, 8vw, 2.2rem);
         line-height: 1.2;
+        margin-bottom: 1.25rem !important;
+    }
+
+    .cta-banner .btn {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
     }
 
     .cta-shape.shape-lg {
@@ -2580,7 +2587,7 @@ h6 {
     height: 100%;
     border-radius: 28px;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    box-shadow: none;
     transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     transform: translateZ(0);
     border: 1px solid rgba(0, 0, 0, 0.04);
@@ -2606,7 +2613,7 @@ h6 {
 
 .portfolio-card:hover {
     transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 30px 60px rgba(251, 82, 61, 0.15);
+    box-shadow: none;
     border-color: rgba(251, 82, 61, 0.2);
 }
 
