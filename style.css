@@ -122,7 +122,8 @@ h6 {
     .ambient-glow,
     .global-bg-elements,
     .loader-bg-elements,
-    .cta-shape {
+    .cta-shape,
+    .social-floating-icon {
         display: none !important;
     }
 
@@ -326,19 +327,33 @@ h6 {
 
 /* Buttons */
 .primary-btn {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: white;
-    transition: all 0.3s ease;
+    background-color: var(--primary-color) !important;
+    border: 2px solid var(--primary-color) !important;
+    color: white !important;
+    font-family: var(--font-title);
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s var(--ease-out-expo) !important;
 }
 
 .primary-btn:hover,
-.primary-btn:focus {
-    background-color: var(--primary-hover);
-    border-color: var(--primary-hover);
-    color: white;
-    box-shadow: 0 10px 30px rgba(251, 82, 61, 0.5);
+.primary-btn:focus,
+.primary-btn:active {
+    background-color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
+    color: white !important;
+    box-shadow: 0 15px 35px rgba(251, 82, 61, 0.4);
     transform: translateY(-3px) scale(1.02);
+}
+
+.primary-btn:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.primary-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(251, 82, 61, 0.25);
 }
 
 .btn-hover-effect {
@@ -357,6 +372,8 @@ h6 {
     transform: translate(-50%, -50%) scale(0);
     transition: transform 0.5s ease;
     border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: screen;
 }
 
 .btn-hover-effect:hover::after {
@@ -442,7 +459,6 @@ h6 {
 
 @media (min-width: 992px) {
     .hero-section {
-        min-height: 100vh;
         display: flex;
         align-items: center;
         padding: 120px 0 80px;
@@ -654,7 +670,7 @@ h6 {
 }
 
 .hero-person-img {
-    max-height: 420px;
+    max-height: 360px;
     width: 100%;
     object-fit: contain;
     filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.15));
@@ -667,8 +683,8 @@ h6 {
 /* Increase hero image size and section padding for larger screens */
 @media (min-width: 1200px) {
     .hero-person-img {
-        max-height: 600px;
-        /* Increased size for big screens */
+        max-height: 480px;
+        /* Adjusted size for balanced desktop viewing */
     }
 
     .hero-section {
@@ -703,8 +719,8 @@ h6 {
     align-items: center;
     justify-content: center;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    z-index: 3;
-    /* Increased z-index to appear above the hero image */
+    z-index: -1;
+    /* Set behind the text content */
     font-size: 1.2rem;
     animation: float-around 5s ease-in-out infinite;
     margin-left: -22.5px;
@@ -712,56 +728,46 @@ h6 {
 }
 
 .icon-ig {
-    top: 5%;
-    /* Keep */
-    left: 95%;
-    /* Keep */
+    top: 15%;
+    left: 10%;
     color: #E1306C;
-    animation-delay: 0s;
+    animation-delay: 1s;
 }
 
 .icon-fb {
-    top: 35%;
-    /* Adjusted to be higher */
-    left: 98%;
-    /* Adjusted to be closer to the right edge */
+    top: 38%;
+    left: 15%;
     color: #1877F2;
-    animation-delay: 1.5s;
+    animation-delay: 2s;
 }
 
 .icon-ln {
-    top: 35%;
-    /* Adjusted to be higher */
-    left: 2%;
-    /* Adjusted to be closer to the left edge */
+    top: 25%;
+    left: 85%;
     color: #0A66C2;
-    animation-delay: 3s;
+    animation-delay: 5s;
 }
 
 .icon-tk {
-    top: 90%;
-    /* Adjusted to be higher, closer to the bottom of the visible image */
-    left: 50%;
-    /* Keep centered */
+    top: 32%;
+    left: 55%;
     color: #000000;
-    animation-delay: 4.5s;
+    animation-delay: 3s;
 }
 
 .icon-sc {
-    top: 2%;
-    /* Adjusted to be closer to the top edge */
-    left: 50%;
-    /* Keep centered */
+    top: 8%;
+    left: 75%;
     color: #FFFC00;
-    animation-delay: 0.8s;
+    animation-delay: 0s;
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 }
 
 .icon-wa {
-    top: 95%;
+    top: 55%;
     left: 5%;
     color: #25D366;
-    animation-delay: 5.2s;
+    animation-delay: 4s;
 }
 
 .icon-yt {
@@ -796,7 +802,7 @@ h6 {
     }
 
     50% {
-        transform: translate3d(10px, -20px, 0) rotate(15deg);
+        transform: translate3d(25px, -25px, 0) rotate(15deg);
     }
 }
 
@@ -1815,6 +1821,10 @@ h6 {
         background: radial-gradient(circle at 50% 20%, rgba(251, 82, 61, 0.08) 0%, transparent 60%);
     }
 
+    .hero-section .d-flex.flex-wrap {
+        justify-content: center;
+    }
+
     .brand-logo {
         height: 50px;
     }
@@ -1832,11 +1842,11 @@ h6 {
 
     .hero-graphic-container {
         margin-left: 0 !important;
-        margin-top: 4rem;
+        margin-top: 1rem;
     }
 
     .hero-person-img {
-        max-height: 340px;
+        max-height: 300px;
     }
 
     .social-floating-icon {
@@ -1927,12 +1937,16 @@ h6 {
 
 /* Extra small devices (phones, 576px and down) */
 @media (max-width: 575.98px) {
+    .hero-section {
+        padding-bottom: 10px;
+    }
+
     .hero-title {
         font-size: 1.8rem;
     }
 
     .hero-person-img {
-        max-height: 260px;
+        max-height: 220px;
     }
 
     .brand-logo {
@@ -1954,13 +1968,8 @@ h6 {
         width: 260px;
     }
 
-    /* Reposition overflow icons for mobile */
-    .icon-fb {
-        left: 95%;
-    }
-
-    .icon-ln {
-        left: 5%;
+    .hero-graphic-container {
+        margin-top: 0.5rem;
     }
 
     .hero-section .btn {
@@ -2350,6 +2359,28 @@ h6 {
 
 .project-item.hidden {
     display: none;
+}
+
+@media (max-width: 575.98px) {
+    .filter-container {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px !important;
+        padding: 0 10px;
+    }
+
+    .filter-btn {
+        padding: 10px 8px;
+        font-size: 0.8rem;
+        justify-content: center;
+        width: 100%;
+        gap: 6px;
+        white-space: nowrap;
+    }
+
+    .filter-btn i {
+        font-size: 0.9rem;
+    }
 }
 
 /* Team Slider Styles */
