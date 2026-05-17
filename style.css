@@ -50,8 +50,7 @@
 
 html {
     scroll-behavior: smooth;
-
-
+    scroll-padding-top: 100px; /* Ensures space for the sticky navbar when scrolling to IDs */
 }
 
 body {
@@ -1229,6 +1228,7 @@ h6 {
 .portfolio-infinite-container {
     padding: 20px 0;
     position: relative;
+    contain: layout paint;
 }
 
 .track-fade-left,
@@ -1425,6 +1425,7 @@ h6 {
     /* -webkit-backdrop-filter: blur(10px); */
     mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    contain: layout paint;
 }
 
 .testimonial-slider-track {
@@ -1514,6 +1515,7 @@ h6 {
     -webkit-backdrop-filter: blur(10px);
     mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    contain: layout paint;
 }
 
 .logos-ticker {
@@ -2397,6 +2399,7 @@ h6 {
     padding: 30px 0;
     mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    contain: layout paint;
 }
 
 .team-slider-track {
@@ -2623,6 +2626,8 @@ h6 {
 .logos-ticker,
 .team-slider-track {
     will-change: transform;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
 }
 
 

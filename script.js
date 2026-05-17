@@ -160,19 +160,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             calculateDimensions();
-            window.addEventListener('resize', () => {
+
+            // Use ResizeObserver instead of window resize for better performance
+            const resizeObserver = new ResizeObserver(() => {
                 calculateDimensions();
-                // If animation is running, restart it to apply new dimensions correctly
                 if (animationFrameId) { 
                     track.stopAutoAnimation();
                     track.startAutoAnimation();
                 }
             });
+            resizeObserver.observe(track);
 
             // The core animation logic, now separated from the RAF loop management
             function animateLogic(time) {
-                const deltaTime = time - lastTime;
+                let deltaTime = time - lastTime;
                 lastTime = time;
+
+                // Cap delta time to prevent "jumping" after a lag spike or tab switch
+                if (deltaTime > 100) deltaTime = 16.7; 
 
                 if (halfWidth > 0) {
                     // Only advance automatically if not being dragged or hovered (use track properties)
@@ -180,14 +185,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         currentX += speedDirection * speed_px_per_ms * deltaTime;
                     }
 
-                    // Seamless loop logic: adding/subtracting is smoother than modulus for sub-pixel values
                     if (currentX <= -halfWidth) {
                         currentX += halfWidth;
                     } else if (currentX > 0) {
                         currentX -= halfWidth;
                     }
 
-                    track.style.transform = `translate3d(${currentX.toFixed(2)}px, 0, 0)`;
+                    track.style.transform = `translate3d(${currentX}px, 0, 0)`;
                 }
             }
 
@@ -365,14 +369,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                     this.classList.add('active');
 
-                    // Calculate offset for fixed navbar
-                    const offset = 100; // Increased to account for the floating navbar margin
-                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+                    // Modern Smooth Scroll with defined "time" (1000ms)
+                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - 100;
+                    const startPosition = window.scrollY;
+                    const distance = targetPosition - startPosition;
+                    const duration = 1000; // Set scroll time to 1 second
+                    let start = null;
 
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    function step(timestamp) {
+                        if (!start) start = timestamp;
+                        const progress = timestamp - start;
+                        const val = Math.min(progress / duration, 1);
+                        
+                        // Cubic Bezier Easing (Ease In Out)
+                        const ease = val < 0.5 ? 4 * val * val * val : 1 - Math.pow(-2 * val + 2, 3) / 2;
+                        
+                        window.scrollTo(0, startPosition + distance * ease);
+                        if (progress < duration) window.requestAnimationFrame(step);
+                    }
+                    window.requestAnimationFrame(step);
 
                     // Close mobile menu if open
                     const navbarCollapse = document.querySelector('.navbar-collapse');
