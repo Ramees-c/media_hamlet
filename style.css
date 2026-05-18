@@ -51,6 +51,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px; /* Ensures space for the sticky navbar when scrolling to IDs */
+    overflow-x: hidden;
 }
 
 body {
@@ -126,6 +127,24 @@ h6 {
         display: none !important;
     }
 
+    .service-row {
+        --bs-gutter-y: 1.5rem !important; /* Reduces vertical gap between stacked image and card */
+        margin-bottom: 2rem !important; /* Tighter spacing between service sections on mobile */
+    }
+
+    .image-card {
+        aspect-ratio: 16 / 10;
+        height: auto !important;
+        border-width: 6px !important;
+    }
+
+    .service-tag-badge {
+        bottom: 15px !important;
+        right: 15px !important;
+        padding: 6px 12px !important;
+        font-size: 0.65rem !important;
+    }
+
     /* Performance: Disable expensive effects on mobile for buttery smooth scrolling */
     .hero-section,
     .cta-banner {
@@ -162,6 +181,18 @@ h6 {
     .testimonial-slider-wrapper {
         mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
         -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    }
+}
+
+/* Optimization for Nest Hub Max and Large Tablets in Landscape (e.g., 1280x800) */
+@media (min-width: 992px) and (max-width: 1366px) and (max-height: 900px) {
+    .service-row {
+        margin-bottom: 2.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+
+    .service-card {
+        padding: 2.5rem !important;
     }
 }
 
@@ -1048,21 +1079,44 @@ h6 {
 
 /* Services & Cards */
 .service-card {
-    background: var(--glass-bg);
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 1);
-    transition: transform 0.6s var(--ease-out-expo), box-shadow 0.6s var(--ease-out-expo), border-color 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.04);
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     border-radius: 32px !important;
     z-index: 1;
+    overflow: visible !important;
     backface-visibility: hidden;
     will-change: transform;
+    position: relative;
 }
 
 .service-card:hover {
-    box-shadow: 0 30px 60px rgba(251, 82, 61, 0.12);
-    border-color: rgba(251, 82, 61, 0.15);
+    transform: translateY(-15px);
+    box-shadow: 0 40px 100px rgba(251, 82, 61, 0.12);
+    border-color: rgba(251, 82, 61, 0.3);
+    background: #ffffff;
+}
+
+.service-card-accent {
+    position: absolute;
+    top: 0;
+    left: 40px;
+    right: 40px;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: 0 0 10px 10px;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateY(-10px);
+}
+
+.service-card:hover .service-card-accent {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .service-card:hover .icon-box {
@@ -1098,143 +1152,53 @@ h6 {
     color: var(--primary-color);
 }
 
-.service-number {
-    position: absolute;
-    top: 30px;
-    right: 40px;
-    font-size: 5rem;
-    font-weight: 800;
-    color: rgba(0, 0, 0, 0.05);
-    line-height: 1;
-    pointer-events: none;
-    transition: all 0.4s ease;
-}
-
-.service-card:hover .service-number {
-    color: rgba(251, 82, 61, 0.12);
-    transform: translateY(-5px);
-}
-
-
-
 .image-card {
-    transition: transform 0.5s ease;
+    height: 100%;
+    transition: all 0.6s var(--ease-out-expo);
+    border: 10px solid #fff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08) !important;
+    position: relative;
+}
+
+.image-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(251, 82, 61, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
 .image-card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.02) rotate(1deg);
+    box-shadow: 0 30px 60px rgba(251, 82, 61, 0.15) !important;
+}
+
+.image-card:hover::after {
+    opacity: 1;
+}
+
+.service-tag-badge {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    z-index: 5;
+    color: var(--primary-color);
 }
 
 .image-card img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
     transition: transform 0.7s ease;
-}
-
-/* Services Section Specific Styles */
-.services-section-row {
-    display: flex;
-    align-items: stretch;
-    position: relative;
-}
-
-.services-left-col {
-    position: relative;
-}
-
-.services-sticky-image {
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 120px;
-    z-index: 10;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
-    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-    display: flex;
-    align-items: center;
-}
-
-.services-sticky-image:hover {
-    transform: scale(1.02);
-}
-
-.services-sticky-image img {
-    height: auto !important;
-    width: 100%;
-    transform: scale(1.1);
-    transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.services-sticky-image:hover img {
-    transform: scale(1);
-}
-
-.services-cards-wrapper {
-    max-height: none;
-    /* Allow natural scrolling */
-    overflow-y: visible;
-    scroll-behavior: smooth;
-    padding: 0;
-    scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* IE and Edge */
-}
-
-#services {
-    padding: 30px 0;
-}
-
-@media (min-width: 992px) {
-    #services {
-        padding: 40px 0;
-    }
-}
-
-.services-cards-wrapper::-webkit-scrollbar {
-    display: none;
-    /* Chrome, Safari and Opera */
-}
-
-/* Responsive adjustments for services section */
-@media (max-width: 1024px) {
-    .services-left-col {
-        position: relative;
-        top: auto;
-    }
-
-    .services-sticky-image {
-        height: auto;
-        position: relative;
-        top: auto;
-    }
-
-    .services-sticky-image img {
-        transform: scale(1);
-        /* Reset scale for mobile to prevent unwanted zoom */
-        object-fit: cover;
-        /* Ensure image covers the container while maintaining aspect ratio */
-        object-position: center;
-        /* Center the image within its container */
-        transition: none;
-        /* Disable transition on mobile for immediate effect */
-    }
-
-    .services-cards-wrapper {
-        max-height: none;
-        /* Disable max-height and overflow on smaller screens */
-        overflow-y: visible;
-        padding-right: 0;
-    }
-
-    .services-section-row {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .services-section-row>.col-lg-6 {
-        width: 100%;
-    }
 }
 
 /* Service Feature List Item */
@@ -1874,20 +1838,13 @@ h6 {
     }
 
     .hero-title {
-        font-size: clamp(2rem, 6vw, 2.8rem);
+        font-size: clamp(2.4rem, 8vw, 3.2rem);
         line-height: 1.1;
     }
 
     .hero-text {
-        padding-right: 0 !important;
         font-size: 1rem;
         margin-bottom: 2rem !important;
-    }
-
-    .about-description {
-        padding: 0 10px !important;
-        margin-bottom: 1.5rem !important;
-        font-size: 1.05rem !important;
     }
 
     .hero-graphic-container {
@@ -1992,7 +1949,7 @@ h6 {
     }
 
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
     }
 
     .hero-person-img {
@@ -2022,6 +1979,14 @@ h6 {
         margin-top: 0.5rem;
     }
 
+    .image-card {
+        aspect-ratio: 4 / 3;
+    }
+
+    .about-description {
+        font-size: 1rem !important;
+    }
+
     .hero-section .btn {
         width: 100%;
         justify-content: center;
@@ -2038,15 +2003,103 @@ h6 {
     .experience-badge-modern .label {
         margin-top: 2px;
     }
-    .service-number {
-        font-size: 3rem !important;
-        top: 15px !important;
-        right: 20px !important;
-        opacity: 0.1 !important;
-    }
 
     .hero-section .d-flex {
         flex-direction: column !important;
+    }
+
+    .hero-section .badge-custom {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+    }
+
+    .hero-title,
+    .hero-text {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    #about .badge-custom {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+    }
+
+    #about h2,
+    #about .about-description {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    #services .badge-custom {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+    }
+
+    #services h2,
+    .services-subtitle {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    #portfolio .badge-custom,
+    .hero-section .badge-custom {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+    }
+
+    #portfolio h2,
+    .portfolio-subtitle {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    #brands .badge-custom {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+    }
+
+    #brands h2,
+    .brands-subtitle {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    #team .badge-custom {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+    }
+
+    #team h2,
+    .team-subtitle {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    #contact .badge-custom {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+    }
+
+    #contact h2,
+    .contact-subtitle {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    .custom-footer .brand-logo,
+    .custom-footer .social-icons,
+    .custom-footer .rounded-4 {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+        width: auto !important;
+    }
+
+    .custom-footer h5,
+    .footer-description,
+    .custom-footer .list-unstyled,
+    .custom-footer .text-center p {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
     }
 
     .hero-section .btn {
